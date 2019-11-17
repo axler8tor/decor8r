@@ -1,0 +1,4 @@
+/target
+**/*.rs.bk
+
+decor8.code-workspace

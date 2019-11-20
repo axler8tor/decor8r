@@ -2,22 +2,20 @@ extern crate clap;
 
 fn main() {
     let clargs = clap::App::new("decor8r")
+        .author("Axl Mattheus, decor8r@axl.tech")
         .version("0.1.0")
-        .about("Decorate terminal-based applications.")
-        .arg(
-            clap::Arg::with_name("foregroung")
-                .help("Foreground colour.")
-                .long("foreground")
-                .short("f")
-                .default_value("FOREGROUND_WHITE") // change to enumb
-                .global(true)
+        .about("Decorate terminal-based status lines or prompts.")
+        .long_about(
+            "Produce decorated zsh, tmux and neovim status lines or command prompts. Inspried by powerline."
         )
         .arg(
-            clap::Arg::with_name("backgroung")
-                .help("Background colour.")
-                .long("background")
-                .short("b")
-                .default_value("BACKGROUND_BLACK") // change to enum
+            clap::Arg::with_name("color")
+                .help("Color display mode.")
+                .long("color")
+                .short("c")
+                .alias("colour")
+                .value_name("MODE")
+                .possible_values(&["auto", "8", "16", "256"])
                 .global(true)
         )
         .subcommand(
@@ -38,7 +36,7 @@ fn main() {
         Some("zsh") => println!("zsh"),
         Some("tmux") => println!("tmux"),
         Some("nnvm") => println!("nvim"),
-        _ => println!("Something else...")
+        _ => println!("Something else..."),
     }
 }
 

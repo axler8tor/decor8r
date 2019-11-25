@@ -1,6 +1,13 @@
 #[macro_use]
 extern crate clap;
 
+use std::process;
+
+/*
+fn app<'a, 'b>() -> clap::App<'a, 'b> {
+    clap::App::new("koos")
+}
+*/
 
 fn main() {
     let clargs = clap::App::new("decor8r")
@@ -14,12 +21,19 @@ fn main() {
                 clap::Arg::with_name("color")
                     .help("Color display mode.")
                     .takes_value(true)
-                    .long("color")
-                    .short("c")
-                    .alias("colour")
+                    .long("mode")
+                    .short("m")
                     .value_name("MODE")
                     .possible_values(&["auto", "8", "16", "256"])
                     .default_value("16")
+                    .global(true)
+            )
+            .arg(
+                clap::Arg::with_name("config")
+                    .help("Configuration file.")
+                    .long("config")
+                    .short("c")
+                    .value_name("PATH")
                     .global(true)
             )
             .subcommand(
@@ -35,13 +49,9 @@ fn main() {
                     .about("Decorate neovim status lines.")
             ).get_matches();
 
-    match clargs.subcommand_name() {
-        Some("zsh") => println!("zsh"),
-        Some("tmux") => println!("tmux"),
-        Some("nnvm") => println!("nvim"),
-        _ => println!("Something else..."),
+    if let Err(e) = decor8::dispatch(clargs) {
+        println!("Error: {}", e);
+
+        process::exit(1);
     }
 }
-
-#[cfg(test)]
-mod tests {}

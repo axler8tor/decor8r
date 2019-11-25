@@ -1,3 +1,7 @@
+extern crate clap;
+
+use std::error::Error;
+
 pub enum Colors {
     None,
     Black,
@@ -17,14 +21,22 @@ pub enum Side {
     Right,
 }
 
-pub struct Decoration {
+pub struct Decoration {}
 
+impl Decoration {}
+
+pub fn dispatch(state: clap::ArgMatches) -> Result<(), Box<dyn Error>> {
+    match state.subcommand_name() {
+        Some("zsh") => println!("zsh"),
+        Some("tmux") => println!("tmux"),
+        Some("vim") => println!("vim"),
+        _ => println!("Something else...")
+    }
+    Ok(())
 }
 
-impl Decoration {
-
-}
-
-pub fn run() {
-
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn new_decoration() { }
 }

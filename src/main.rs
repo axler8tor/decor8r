@@ -49,7 +49,7 @@ fn main() {
                     .about("Decorate neovim status lines.")
             ).get_matches();
 
-    if let Err(e) = decor8::dispatch(clargs) {
+    if let Err(e) = decor8r::dispatch(clargs) {
         println!("Error: {}", e);
 
         process::exit(1);

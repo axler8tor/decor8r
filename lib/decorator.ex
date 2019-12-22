@@ -1,18 +1,5 @@
 defmodule Decorator do
-  @moduledoc """
-  Documentation for Decorator.
-  """
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Decorator.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  def get_path do
   end
 end

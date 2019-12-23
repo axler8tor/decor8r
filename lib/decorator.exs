@@ -10,9 +10,9 @@ defmodule Decorator do
   end
 
   def decorate(path) do
-    bg_green = "\\033[32m"
-    bg_normal = "\\033[0m"
-    bg_green <> path <> bg_normal
+    green = "\\033[32m"
+    normal = "\\033[0m"
+    green <> path <> normal
   end
 end
 

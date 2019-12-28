@@ -5,7 +5,7 @@ defmodule Decorator do
     %{cwd: cwd, home: home}
   end
 
-  def compress_path(cwd, home) do
+  def compress_path(cwd, home, depth \\ 5) do
     String.replace(cwd, home, "~")
   end
 
@@ -16,7 +16,7 @@ defmodule Decorator do
   end
 end
 
-%{cwd: {:ok, cwd}, home: home} = Decorator.get_path
-path = Decorator.compress_path(cwd, home)
-decorated_path = Decorator.decorate(path)
-IO.puts decorated_path
+#%{cwd: {:ok, cwd}, home: home} = Decorator.get_path
+#path = Decorator.compress_path(cwd, home)
+#decorated_path = Decorator.decorate(path)
+#IO.puts decorated_path

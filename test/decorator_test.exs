@@ -2,7 +2,7 @@ defmodule DecoratorTest do
   use ExUnit.Case
   doctest Decorator
 
-  test "greets the world" do
+  test "test path" do
     assert Decorator.hello() == :world
   end
 end

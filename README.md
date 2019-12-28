@@ -13,3 +13,33 @@ Conventions : Singular terms or words are, in most cases, interchangeable with
               the same words in plural form and vice versa.
 Keywords    : Read Me, Instructions, Examples
 ---
+# decor8r #
+<!-- Badges -->
+Description
+
+## Table of Content ##
+<!--  -->
+
+## Install ##
+<!--  -->
+
+## Use ##
+<!--  -->
+
+## Support ##
+<!--  -->
+
+## Roadmap ##
+<!--  -->
+
+## Contribute ##
+### Copyright Waiver ###
+### Commit Log Format ###
+[See](https://chris.beams.io/posts/git-commit/)
+### Authors ###
+
+## decor8r Book ##
+<!--  -->
+
+## License ##
+

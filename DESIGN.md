@@ -17,7 +17,7 @@ _2019-12-28_
 ### Technology Decisions ###
 The following table shows the technology decisions for version 0.1.1:
 | Component             | Technology
-|                    --:| --
+|                   ---:|----
 | **Client**            | No implementation technology decided on in version 0.1.x
 | **Back End**          | Elixir
 | **C/S Communication** | No technology is decided on for how a _client_ will communicate with the _daemon_.
@@ -25,7 +25,7 @@ The following table shows the technology decisions for version 0.1.1:
 ### Considerations ###
 The following table shows which technologies was considered for clients, back ends and communication protocols:
 | Component     | Technology
-|            --:| --
+|           ---:|---
 | **Client**    | Rust, Nim, Python, Reason/OCaml
 | **Back End**  | Rust, Reason/Ocaml
 | **Comms**     | Socket, RPC, Rest, MessagePack
@@ -40,7 +40,7 @@ The reasons Elixir was chosen as the back-end technology are:
 ### Resolution Timelines ###
 The following table shows when design decisions (**R**) will be resolved:
 | Component     | Resolution (**R**)
-|            --:| --
+|           ---:|---
 | **Client**    | 0.1.1 < **R** < 0.2.0
 | **Back End**  | 0.1.1
 | **Comms**     | 0.1.1 < **R** < 0.2.0

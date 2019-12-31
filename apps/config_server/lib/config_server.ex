@@ -3,16 +3,14 @@ defmodule ConfigServer do
   Documentation for ConfigServer.
   """
 
-  @doc """
-  Hello world.
+  use GenServer
 
-  ## Examples
+  def init(:ok) do
+    {:ok, []}
+  end
 
-      iex> ConfigServer.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  @impl true
+  def handle_call({:read, path}, _from, store) do
+    {:reply, [], []}
   end
 end

@@ -1,4 +1,4 @@
-defmodule ConfigServer.MixProject do
+defmodule ConfigurationServer.MixProject do
   use Mix.Project
 
   def project do
@@ -19,7 +19,7 @@ defmodule ConfigServer.MixProject do
   def application do
     [
       extra_applications: [:logger],
-      mod: {ConfigServer.Application, []}
+      mod: {ConfigurationServer.Application, []}
     ]
   end
 

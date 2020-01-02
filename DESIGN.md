@@ -11,6 +11,17 @@ The following graphic shows an example of _**decor8r**_'s most likely high-level
 The _daemon_ front end accepts requests from clients, forwards the requests to the appropriate _daemon_ back end components which produces the decorations according to configuration rules.
 
 
+## Decision Backlog and Resolution Register ##
+The _Decision Backlog and Resolution Register_ keeps track of decisions that still need to be made, together with a target release by which time the decision should be resolved. The following table shows what design elements are undecided and when design decisions will be resolved:
+
+| Component     | Target        | Status
+|           ---:|---            |---
+| **Client**    | Before 0.2.0  | In progress
+| **Back End**  | 0.1.1         | Resolved
+| **Config**    | 0.1.2         | Resolved
+| **Comms**     | Before 0.2.0  | In progress
+
+
 ## [0.1.2](https://github.com/axler8tor/decor8r/projects/1#card-31019946) ##
 _2019-12-31_
 
@@ -20,16 +31,6 @@ The following graphic shows a high-level workflow for _**decor8r**_&apos;s confi
 A supervisor starts the _Configuration Service_. The service checks to see if a default configuration exist. If it does, it loads the default configuration. If it does not exist, the configuration service creates a default configuration in the default configuration directory &mdash; `$XDG_CONFIG_HOME/decor8r/config.toml`, if it is defined or `~/.config/decor8r/config.toml`.
 
 Information in [this link](https://stackoverflow.com/questions/3373948/equivalents-of-xdg-config-home-and-xdg-data-home-on-mac-os-x) was considered for configuration directories on macOS environments. It was decided that a simpler mapping (as used by the likes of _Alacritty_, _powerline_, _tig_ and _Neovim_ on macOS) would be used;  `$XDG_CONFIG_HOME` maps to `~/.config`.
-
-### Decision Backlog and Resolution Register ###
-The _Decision Backlog and Resolution Register_ keeps track of decisions that still need to be made, together with a target release by which time the decision should be resolved. The following table shows what design elements are undecided and when design decisions will be resolved:
-
-| Component     | Target        | Status
-|           ---:|---            |---
-| **Client**    | Before 0.2.0  | In progress
-| **Back End**  | 0.1.1         | Resolved
-| **Config**    | 0.1.2         | Resolved
-| **Comms**     | Before 0.2.0  | In progress
 
 ### Technology Decisions ###
 The following table shows the technology decisions for this version:

@@ -14,7 +14,7 @@ The _daemon_ front end accepts requests from clients, forwards the requests to t
 ## [0.1.2](https://github.com/axler8tor/decor8r/projects/1#card-31019946) ##
 _2019-12-31_
 
-The folowing graphic shows a high-level workflow for _**decor8r**_&apos;s configuration service:
+The following graphic shows a high-level workflow for _**decor8r**_&apos;s configuration service:
 ![Alt Configuration Workflow](__design/decor8r-arch-20191231122058.svg)
 
 A supervisor starts the _Configuration Service_. The service checks to see if a default configuration exist. If it does, it loads the default configuration. If it does not exist, the configuration service creates a default configuration in the default configuration directory &mdash; `$XDG_CONFIG_HOME/decor8r/config.toml`, if it is defined or `~/.config/decor8r/config.toml`.
@@ -22,15 +22,16 @@ A supervisor starts the _Configuration Service_. The service checks to see if a 
 Information in [this link](https://stackoverflow.com/questions/3373948/equivalents-of-xdg-config-home-and-xdg-data-home-on-mac-os-x) was considered for configuration directories on macOS environments. It was decided that a simpler mapping (as used by the likes of _Alacritty_, _powerline_, _tig_ and _Neovim_ on macOS) would be used;  `$XDG_CONFIG_HOME` maps to `~/.config`.
 
 ### Decision Backlog and Resolution Register ###
-The _Decision Backlog and Resolution Register_ keeps track of decicions that still need to be made, together with a target release by which time the decision should be resolved. The following table shows what design elements are undecided and when design decisions (**R**) will be resolved:
+The _Decision Backlog and Resolution Register_ keeps track of decisions that still need to be made, together with a target release by which time the decision should be resolved. The following table shows what design elements are undecided and when design decisions will be resolved:
 
-| Component     | Resolution (**R**)
-|           ---:|---
-| **Client**    | 0.1.1 < **R** < 0.2.0
-| **Back End**  | 0.1.1
-| **Comms**     | 0.1.1 < **R** < 0.2.0
+| Component     | Target        | Status
+|           ---:|---            |---
+| **Client**    | Before 0.2.0  | In progress
+| **Back End**  | 0.1.1         | Resolved
+| **Config**    | 0.1.2         | Resolved
+| **Comms**     | Before 0.2.0  | In progress
 
-### Tecnology Decisions ###
+### Technology Decisions ###
 The following table shows the technology decisions for this version:
 
 | Component         | Technology
@@ -38,16 +39,11 @@ The following table shows the technology decisions for this version:
 | **Config Format** | TOML
 | **Config Reader** | Elixir TOML
 
-### Considerations ###
-None
-
 ### Rationale ###
 The reasons TOML was chosen as a configuration format are:
 1. It is easy on the eye and wrists
 1. It can be documented
 1. There is a good Elixir library for it
-
-### Resolution Timelines ###
 
 ### References ###
 + [TOML for Elixir](https://github.com/bitwalker/toml-elixir)

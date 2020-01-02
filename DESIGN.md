@@ -23,6 +23,7 @@ Information in [this link](https://stackoverflow.com/questions/3373948/equivalen
 
 ### Tecnology Decisions ###
 The following table shows the technology decisions for this version:
+
 | Component         | Technology                                                |
 |               ---:|----                                                       |
 | **Config Format** | TOML                                                      |
@@ -40,6 +41,7 @@ _2019-12-28_
 
 ### Technology Decisions ###
 The following table shows the technology decisions for version 0.1.1:
+
 | Component     | Technology                                                    |
 |           ---:|----                                                           |
 | **Client**    | No implementation technology decided on in version 0.1.x      |
@@ -49,6 +51,7 @@ The following table shows the technology decisions for version 0.1.1:
 
 ### Considerations ###
 The following table shows which technologies was considered for clients, back ends and communication protocols:
+
 | Component     | Technology                                                    |
 |           ---:|---                                                            |
 | **Client**    | Rust, Nim, Python, Reason/OCaml                               |
@@ -64,6 +67,7 @@ The reasons Elixir was chosen as the back-end technology are:
 
 ### Resolution Timelines ###
 The following table shows when design decisions (**R**) will be resolved:
+
 | Component     | Resolution (**R**)
 |           ---:|---
 | **Client**    | 0.1.1 < **R** < 0.2.0

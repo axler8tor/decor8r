@@ -21,17 +21,34 @@ A supervisor starts the _Configuration Service_. The service checks to see if a 
 
 Information in [this link](https://stackoverflow.com/questions/3373948/equivalents-of-xdg-config-home-and-xdg-data-home-on-mac-os-x) was considered for configuration directories on macOS environments. It was decided that a simpler mapping (as used by the likes of _Alacritty_, _powerline_, _tig_ and _Neovim_ on macOS) would be used;  `$XDG_CONFIG_HOME` maps to `~/.config`.
 
+### Decision Backlog and Resolution Register ###
+The _Decision Backlog and Resolution Register_ keeps track of decicions that still need to be made, together with a target release by which time the decision should be resolved. The following table shows what design elements are undecided and when design decisions (**R**) will be resolved:
+
+Component     | Resolution (**R**)
+          ---:|---
+**Client**    | 0.1.1 < **R** < 0.2.0
+**Back End**  | 0.1.1
+**Comms**     | 0.1.1 < **R** < 0.2.0
+
 ### Tecnology Decisions ###
 The following table shows the technology decisions for this version:
 
-| Component         | Technology                                                |
-|               ---:|----                                                       |
-| **Config Format** | TOML                                                      |
-| **Config Reader** | Elixir TOML                                               |
+Component         | Technology
+              ---:|----
+**Config Format** | TOML
+**Config Reader** | Elixir TOML
 
 ### Considerations ###
+None
+
 ### Rationale ###
+The reasons TOML was chosen as a configuration format are:
+1. It is easy on the eye and wrists
+1. It can be documented
+1. There is a good Elixir library for it
+
 ### Resolution Timelines ###
+
 ### References ###
 + [TOML for Elixir](https://github.com/bitwalker/toml-elixir)
 
@@ -42,21 +59,20 @@ _2019-12-28_
 ### Technology Decisions ###
 The following table shows the technology decisions for version 0.1.1:
 
-| Component     | Technology                                                    |
-|           ---:|----                                                           |
-| **Client**    | No implementation technology decided on in version 0.1.x      |
-| **Back End**  | Elixir                                                        |
-| **IPC**       | No technology is decided on for how a _client_ will           |
-|               | communicate with the _daemon_.                                |
+Component     | Technology
+          ---:|----
+**Client**    | No implementation technology decided on in version 0.1.x
+**Back End**  | Elixir
+**IPC**       | No technology is decided on for how a _client_ will communicate with the _daemon_.
 
 ### Considerations ###
 The following table shows which technologies was considered for clients, back ends and communication protocols:
 
-| Component     | Technology                                                    |
-|           ---:|---                                                            |
-| **Client**    | Rust, Nim, Python, Reason/OCaml                               |
-| **Back End**  | Rust, Reason/Ocaml                                            |
-| **IPC**       | Socket, RPC, Rest, MessagePack                                |
+Component     | Technology
+          ---:|---
+**Client**    | Rust, Nim, Python, Reason/OCaml
+**Back End**  | Rust, Reason/Ocaml
+**IPC**       | Socket, RPC, Rest, MessagePack
 
 ### Rationale ###
 The reasons Elixir was chosen as the back-end technology are:
@@ -64,15 +80,6 @@ The reasons Elixir was chosen as the back-end technology are:
 1. I am familiar with it
 1. It has a vibrant, helpful community
 1. It has stable implementations for macOS, BSD, Solaris and Linux
-
-### Resolution Timelines ###
-The following table shows when design decisions (**R**) will be resolved:
-
-| Component     | Resolution (**R**)
-|           ---:|---
-| **Client**    | 0.1.1 < **R** < 0.2.0
-| **Back End**  | 0.1.1
-| **Comms**     | 0.1.1 < **R** < 0.2.0
 
 
 ## R&D ##

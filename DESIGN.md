@@ -6,29 +6,54 @@ _decor8r_. How it hangs together, what drove the decisions, how it works. This i
 _**decor8r**_ follows a general client-server architecture. The servers is called the _**decor8r**_ _daemon_ (_daemon_) and the client is called the _**decor8r**_ _client_ (_client_). On startup the _daemon_ reads one or more configuration files to establish the decoration rules, themes and options. The _daemon_ can be instructed to refresh its configuration on demand. The _daemon_ gets requests from _client_, builds the decoration according to the configuration rules and pass the decoration back to the client which displays the decorated prompt or status line.
 
 The following graphic shows an example of _**decor8r**_'s most likely high-level architecture as of version 0.1.x:
-![Alt Diagram](__design/decor8r-arch-20191229121452.svg)
+![Alt decor8r Architecture](__design/decor8r-arch-20191229121452.svg)
 
 The _daemon_ front end accepts requests from clients, forwards the requests to the appropriate _daemon_ back end components which produces the decorations according to configuration rules.
 
 
-## 0.1.1 ##
+## [0.1.2](https://github.com/axler8tor/decor8r/projects/1#card-31019946) ##
+_2019-12-31_
+
+The folowing graphic shows a high-level workflow for _**decor8r**_&apos;s configuration service:
+![Alt Configuration Workflow](__design/decor8r-arch-20191231122058.svg)
+
+A supervisor starts the _Configuration Service_. The service checks to see if a default configuration exist. If it does, it loads the default configuration. If it does not exist, the configuration service creates a default configuration in the default configuration directory &mdash; `$XDG_CONFIG_HOME/decor8r/config.toml`, if it is defined or `~/.config/decor8r/config.toml`.
+
+Information in [this link](https://stackoverflow.com/questions/3373948/equivalents-of-xdg-config-home-and-xdg-data-home-on-mac-os-x) was considered for configuration directories on macOS environments. It was decided that a simpler mapping (as used by the likes of _Alacritty_, _powerline_, _tig_ and _Neovim_ on macOS) would be used;  `$XDG_CONFIG_HOME` maps to `~/.config`.
+
+### Tecnology Decisions ###
+The following table shows the technology decisions for this version:
+| Component         | Technology                                                |
+|               ---:|----                                                       |
+| **Config Format** | TOML                                                      |
+| **Config Reader** | Elixir TOML                                               |
+
+### Considerations ###
+### Rationale ###
+### Resolution Timelines ###
+### References ###
++ [TOML for Elixir](https://github.com/bitwalker/toml-elixir)
+
+
+## [0.1.1](https://github.com/axler8tor/decor8r/projects/1#card-30936560) ##
 _2019-12-28_
 
 ### Technology Decisions ###
 The following table shows the technology decisions for version 0.1.1:
-| Component             | Technology
-|                   ---:|----
-| **Client**            | No implementation technology decided on in version 0.1.x
-| **Back End**          | Elixir
-| **C/S Communication** | No technology is decided on for how a _client_ will communicate with the _daemon_.
+| Component     | Technology                                                    |
+|           ---:|----                                                           |
+| **Client**    | No implementation technology decided on in version 0.1.x      |
+| **Back End**  | Elixir                                                        |
+| **IPC**       | No technology is decided on for how a _client_ will           |
+|               | communicate with the _daemon_.                                |
 
 ### Considerations ###
 The following table shows which technologies was considered for clients, back ends and communication protocols:
-| Component     | Technology
-|           ---:|---
-| **Client**    | Rust, Nim, Python, Reason/OCaml
-| **Back End**  | Rust, Reason/Ocaml
-| **Comms**     | Socket, RPC, Rest, MessagePack
+| Component     | Technology                                                    |
+|           ---:|---                                                            |
+| **Client**    | Rust, Nim, Python, Reason/OCaml                               |
+| **Back End**  | Rust, Reason/Ocaml                                            |
+| **IPC**       | Socket, RPC, Rest, MessagePack                                |
 
 ### Rationale ###
 The reasons Elixir was chosen as the back-end technology are:
@@ -61,3 +86,5 @@ The following table shows when design decisions (**R**) will be resolved:
 + [Credo](https://github.com/rrrene/credo)
 + [Dialyxir](https://github.com/jeremyjh/dialyxir)
 + [Umbrella Projects](https://duckduckgo.com/?q=when+to+use+umbrella+project+elixir&t=braveed&ia=web)
++ [Elixir TOML](https://github.com/bitwalker/toml-elixir.git)
++ [XDG Base Directory Spec](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html)

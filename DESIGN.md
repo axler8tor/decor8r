@@ -22,6 +22,12 @@ The _Decision Backlog and Resolution Register_ keeps track of decisions that sti
 | **Comms**     | Before 0.2.0  | In progress
 
 
+## [0.1.3](https://github.com/axler8tor/decor8r/projects/1#card-31119404)
+_2020-01-08_
+
+The commit logs tell the story. It is not pretty.
+
+
 ## [0.1.2](https://github.com/axler8tor/decor8r/projects/1#card-31019946) ##
 _2019-12-31_
 
@@ -79,20 +85,29 @@ The reasons Elixir was chosen as the back-end technology are:
 1. It has stable implementations for macOS, BSD, Solaris and Linux
 
 
-## R&D ##
-+ [Markdown Cheat sheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
-+ [UTFx Characters](https://www.fileformat.info/info/charset/UTF-8/list.htm)
-+ [ANSI Escape Codes](https://en.wikipedia.org/wiki/ANSI_escape_code)
-+ [Erlang Sockets](https://learnyousomeerlang.com/buckets-of-sockets)
-+ [Git Book](https://git-scm.com/book/en/v2)
-+ [Graphs](https://mermaid-js.github.io/mermaid/#/)
-+ [Graphs Live Editor](https://mermaid-js.github.io/mermaid-live-editor)
-+ [Merge Maps & Structs](https://stackoverflow.com/questions/30997475/load-values-into-a-struct-from-a-map-in-elixir)
-+ [Initialize Struct](https://stackoverflow.com/questions/30927635/in-elixir-how-do-you-initialize-a-struct-with-a-map-variable)
-+ [MessagePack](https://msgpack.org/)
-+ [ZSH Test](https://unix.stackexchange.com/questions/131716/start-zsh-with-a-custom-zshrc)
-+ [Credo](https://github.com/rrrene/credo)
-+ [Dialyxir](https://github.com/jeremyjh/dialyxir)
-+ [Umbrella Projects](https://duckduckgo.com/?q=when+to+use+umbrella+project+elixir&t=braveed&ia=web)
-+ [Elixir TOML](https://github.com/bitwalker/toml-elixir.git)
-+ [XDG Base Directory Spec](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html)
+## Links ##
++ Documentation
+    + [Markdown Cheat sheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+    + [ANSI Escape Codes](https://en.wikipedia.org/wiki/ANSI_escape_code)
+    + [UTFx Characters](https://www.fileformat.info/info/charset/UTF-8/list.htm)
+    + [Git Book](https://git-scm.com/book/en/v2)
+    + [Graphs](https://mermaid-js.github.io/mermaid/#/)
+    + [Graphs Live Editor](https://mermaid-js.github.io/mermaid-live-editor)
++ Daemon
+    + [Erlang Sockets](https://learnyousomeerlang.com/buckets-of-sockets)
+    + [Merge Maps & Structs](https://stackoverflow.com/questions/30997475/load-values-into-a-struct-from-a-map-in-elixir)
+    + [Initialize Struct](https://stackoverflow.com/questions/30927635/in-elixir-how-do-you-initialize-a-struct-with-a-map-variable)
+    + [MessagePack](https://msgpack.org/)
+    + [ZSH Test](https://unix.stackexchange.com/questions/131716/start-zsh-with-a-custom-zshrc)
+    + [Credo](https://github.com/rrrene/credo)
+    + [Dialyxir](https://github.com/jeremyjh/dialyxir)
+    + [Umbrella Projects](https://duckduckgo.com/?q=when+to+use+umbrella+project+elixir&t=braveed&ia=web)
+    + [Elixir TOML](https://github.com/bitwalker/toml-elixir.git)
+    + [XDG Base Directory Spec](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html)
+    + [Elixir Version Management](https://github.com/aforward/version_tasks)
+    + [Unix Socket](https://github.com/kbrw/neovim-elixir/blob/master/lib/link.ex)
+    + [Unix Socket Take II](https://stackoverflow.com/questions/34711738/unix-domain-sockets-in-elixir)
+    + [IPC Socket](https://en.wikipedia.org/wiki/Unix_domain_socket)
++ Client
+    + [Neovim Client](https://github.com/kbrw/neovim-elixir)
+    + [Rust Unix Socket](https://doc.rust-lang.org/std/os/unix/net/)

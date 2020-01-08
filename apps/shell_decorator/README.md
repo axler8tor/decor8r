@@ -10,7 +10,7 @@ by adding `shell_decorator` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:shell_decorator, "~> 0.1.0"}
+    {:shell_decorator, "~> 0.1.1"}
   ]
 end
 ```

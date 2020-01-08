@@ -31,7 +31,7 @@ _2020-01-08_
 Explored many interesting options.
 
 ### Technology Decisions ###
-The following technological desicions were made:
+The following technological decisions were made:
 
 | Component          | Technology
 |                ---:|----

@@ -22,13 +22,36 @@ The _Decision Backlog and Resolution Register_ keeps track of decisions that sti
 | **Comms**     | Before 0.2.0  | In progress
 
 
-## [0.1.3](https://github.com/axler8tor/decor8r/projects/1#card-31119404)
+## [0.1.4](https://github.com/axler8tor/decor8r/projects/1#card-31316726) – Implement project scaffold ##
+
+
+## [0.1.3](https://github.com/axler8tor/decor8r/projects/1#card-31119404) – Research ##
 _2020-01-08_
 
-The commit logs tell the story. It is not pretty.
+Explored many interesting options.
+
+### Technology Decisions ###
+The following technological desicions were made:
+
+| Component          | Technology
+|                ---:|----
+| **Project Layout** | Standard Elixir project
+| **IPC**            | TCP socket
+
+### Considerations ###
+The following technologies were considered:
+
+| Component          | Technology
+|                ---:|----
+| **Project Layout** | Umbrella Elixir project
+| **IPC**            | Unix socket
+
+### Rationale ###
+1. Elixir and Rust has excellent support for TCP sockets.
+1. Umbrella project is overkill, a standard project will suffice.
 
 
-## [0.1.2](https://github.com/axler8tor/decor8r/projects/1#card-31019946) ##
+## [0.1.2](https://github.com/axler8tor/decor8r/projects/1#card-31019946) – Design high level configuration functionality ##
 _2019-12-31_
 
 The following graphic shows a high-level workflow for _**decor8r**_&apos;s configuration service:
@@ -56,7 +79,7 @@ The reasons TOML was chosen as a configuration format are:
 + [TOML for Elixir](https://github.com/bitwalker/toml-elixir)
 
 
-## [0.1.1](https://github.com/axler8tor/decor8r/projects/1#card-30936560) ##
+## [0.1.1](https://github.com/axler8tor/decor8r/projects/1#card-30936560) – High level design ##
 _2019-12-28_
 
 ### Technology Decisions ###

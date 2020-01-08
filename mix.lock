@@ -1,3 +1,6 @@
 %{
+  "git_cli": {:hex, :git_cli, "0.3.0", "a5422f9b95c99483385b976f5d43f7e8233283a47cda13533d7c16131cb14df5", [:mix], [], "hexpm"},
+  "socket": {:hex, :socket, "0.3.13", "98a2ab20ce17f95fb512c5cadddba32b57273e0d2dba2d2e5f976c5969d0c632", [:mix], [], "hexpm"},
   "toml": {:hex, :toml, "0.6.1", "e1c3c91c1fc1ed87e7315a5a88e4bd1eeddf3e61dca2b708724a6a2d1a013844", [:mix], [], "hexpm"},
+  "version_tasks": {:hex, :version_tasks, "0.11.3", "b44c4d99f6af76f69b45e36fec87646f6036d362c0902d04e035889a5f280241", [:mix], [{:git_cli, "~> 0.2", [hex: :git_cli, repo: "hexpm", optional: false]}], "hexpm"},
 }

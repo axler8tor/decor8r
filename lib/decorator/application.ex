@@ -9,6 +9,8 @@ defmodule Decorator.Application do
     children = [
       # Starts a worker by calling: Decorator.Worker.start_link(arg)
       # {Decorator.Worker, arg}
+      {Decorator.Config.Supervisor, []},
+      {Decorator.Shell.Supervisor, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

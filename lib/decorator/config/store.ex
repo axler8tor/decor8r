@@ -17,6 +17,7 @@ defmodule Decorator.Config.Store do
     }
   end
 
+  @impl true
   def init(:ok) do
     {:ok, %{}}
   end

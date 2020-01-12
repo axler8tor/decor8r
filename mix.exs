@@ -32,13 +32,7 @@ defmodule Decorator.MixProject do
 
   defp aliases() do
     [
-      quality: ["format", "credo --strict", "dialyzer", "test"],
-      "quality.ci": [
-        "test",
-        "format --check-formatted",
-        "credo --strict",
-        "dialyzer --halt-exit-status"
-      ]
+      qc: ["format", "credo --strict", "dialyzer"]
     ]
   end
 end

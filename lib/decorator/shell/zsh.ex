@@ -17,6 +17,7 @@ defmodule Decorator.Shell.ZSH do
     }
   end
 
+  @impl true
   def init(:ok) do
     {:ok, %{}}
   end

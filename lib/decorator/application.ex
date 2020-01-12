@@ -5,6 +5,7 @@ defmodule Decorator.Application do
 
   @this __MODULE__
 
+  @impl true
   def start(_type, _args) do
     children = [
       Decorator.Config.Supervisor,

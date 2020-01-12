@@ -17,6 +17,7 @@ defmodule Decorator.Shell.Supervisor do
     }
   end
 
+  @impl true
   def init(_) do
     children = [
       Decorator.Shell.Listener,

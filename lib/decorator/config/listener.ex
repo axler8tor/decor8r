@@ -17,6 +17,7 @@ defmodule Decorator.Config.Listener do
     }
   end
 
+  @impl true
   def init(:ok) do
     {:ok, %{}}
   end

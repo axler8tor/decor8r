@@ -137,6 +137,7 @@ The reasons Elixir was chosen as the back-end technology are:
     + [Unix Socket](https://github.com/kbrw/neovim-elixir/blob/master/lib/link.ex)
     + [Unix Socket Take II](https://stackoverflow.com/questions/34711738/unix-domain-sockets-in-elixir)
     + [IPC Socket](https://en.wikipedia.org/wiki/Unix_domain_socket)
+    + [Code Quality](https://itnext.io/enforcing-code-quality-in-elixir-20f87efc7e66)
 + Client
     + [Neovim Client](https://github.com/kbrw/neovim-elixir)
     + [Rust Unix Socket](https://doc.rust-lang.org/std/os/unix/net/)

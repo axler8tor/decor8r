@@ -1,11 +1,21 @@
 defmodule Decorator.Config.Store do
-    use GenServer
+  use GenServer
 
-    def start_link(opts) do
-        GenServer.start_link(__MODULE__, :ok, opts)
-    end
+  @this __MODULE__
 
-    def init(:ok) do
-        {:ok, %{}}
-    end
+  def start_link do
+    GenServer.start_link(@this, :ok, name: @this)
+  end
+
+  def child_spec(_) do
+    %{
+      id: @this,
+      start: {@this, :start_link, []},
+      type: :worker
+    }
+  end
+
+  def init(:ok) do
+    {:ok, %{}}
+  end
 end

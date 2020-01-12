@@ -1,21 +1,17 @@
 defmodule Decorator.Application do
-  # See https://hexdocs.pm/elixir/Application.html
-  # for more information on OTP Applications
   @moduledoc false
 
   use Application
 
+  @this __MODULE__
+
   def start(_type, _args) do
     children = [
-      # Starts a worker by calling: Decorator.Worker.start_link(arg)
-      # {Decorator.Worker, arg}
-      {Decorator.Config.Supervisor, []},
-      {Decorator.Shell.Supervisor, []}
+      Decorator.Config.Supervisor,
+      Decorator.Shell.Supervisor
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: Decorator.Supervisor]
+    opts = [strategy: :one_for_one, name: @this]
     Supervisor.start_link(children, opts)
   end
 end

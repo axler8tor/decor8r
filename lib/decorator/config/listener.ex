@@ -1,4 +1,6 @@
 defmodule Decorator.Config.Listener do
+  @moduledoc false
+
   use GenServer
 
   @this __MODULE__

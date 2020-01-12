@@ -1,4 +1,6 @@
 defmodule Decorator.Shell.Supervisor do
+  @moduledoc false
+
   use Supervisor
 
   @this __MODULE__

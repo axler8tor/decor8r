@@ -1,4 +1,6 @@
 defmodule Decorator.Shell.ZSH do
+  @moduledoc false
+
   use GenServer
 
   @this __MODULE__

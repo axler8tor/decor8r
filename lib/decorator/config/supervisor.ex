@@ -1,4 +1,6 @@
 defmodule Decorator.Config.Supervisor do
+  @moduledoc false
+
   use Supervisor
 
   @this __MODULE__

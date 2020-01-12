@@ -3,22 +3,12 @@ defmodule Decorator.Config.Listener do
 
   use GenServer
 
-  @this __MODULE__
-
-  def start_link do
-    GenServer.start_link(@this, :ok, name: @this)
-  end
-
-  def child_spec(_) do
-    %{
-      id: @this,
-      start: {@this, :start_link, []},
-      type: :worker
-    }
+  def start_link(_) do
+    GenServer.start_link(__MODULE__, :no_arg, name: __MODULE__)
   end
 
   @impl true
-  def init(:ok) do
-    {:ok, %{}}
+  def init(_) do
+    {:ok, :ok}
   end
 end

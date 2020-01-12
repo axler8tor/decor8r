@@ -3,18 +3,8 @@ defmodule Decorator.Shell.Supervisor do
 
   use Supervisor
 
-  @this __MODULE__
-
-  def start_link do
-    Supervisor.start_link(@this, :ok, name: @this)
-  end
-
-  def child_spec(_) do
-    %{
-      id: @this,
-      start: {@this, :start_link, []},
-      type: :supervisor
-    }
+  def start_link(_) do
+    Supervisor.start_link(__MODULE__, :ok, name: __MODULE__)
   end
 
   @impl true

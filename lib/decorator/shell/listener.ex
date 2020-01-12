@@ -3,21 +3,12 @@ defmodule Decorator.Shell.Listener do
 
   use GenServer
 
-  @this __MODULE__
-
-  def start_link do
-    GenServer.start_link(@this, :ok, name: @this)
+  def start_link(_) do
+    GenServer.start_link(__MODULE__, :no_arg, name: __MODULE__)
   end
 
-  def child_spec(_) do
-    %{
-      id: @this,
-      start: {@this, :start_link, []},
-      type: :worker
-    }
-  end
-
-  def init(:ok) do
-    {:ok, %{}}
+  @impl true
+  def init(_) do
+    {:ok, :ok}
   end
 end

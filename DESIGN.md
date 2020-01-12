@@ -22,10 +22,14 @@ The _Decision Backlog and Resolution Register_ keeps track of decisions that sti
 | **Comms**     | Before 0.2.0  | In progress
 
 
+## [0.1.5](https://github.com/axler8tor/decor8r/projects/1#card-31515243) ###
+_2020-01-12_
+
+
 ## [0.1.4](https://github.com/axler8tor/decor8r/projects/1#card-31316726) – Implement project scaffold ##
 _2020-01-10_
 
-Implemented default application strucure.
+Implemented default application structure.
 
 The following graphic shows a representation of what the design will look like. Not all aspects was implemented:
 ![Alt Application supervision tree](__design/decor8r-arch-20200108095649.svg)

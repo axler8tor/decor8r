@@ -1,0 +1,10 @@
+sequenceDiagram
+  Supervisor ->> Server: start
+  alt existing config
+    Server ->> Server: read
+  else no existing config
+    Server ->> Server: init
+    Server ->> Server: read
+  end
+  Client ->>+ Server: get_config(key)
+  Server -->- Client: value

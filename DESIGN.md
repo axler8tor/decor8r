@@ -22,10 +22,16 @@ The _Decision Backlog and Resolution Register_ keeps track of decisions that sti
 | **Comms**     | Before 0.2.0  | In progress
 
 
+## [0.1.5](https://github.com/axler8tor/decor8r/projects/1#card-31515243) ###
+_2020-01-12_
+
+Implemented minimal code quality measures.
+
+
 ## [0.1.4](https://github.com/axler8tor/decor8r/projects/1#card-31316726) – Implement project scaffold ##
 _2020-01-10_
 
-Implemented default application strucure.
+Implemented default application structure.
 
 The following graphic shows a representation of what the design will look like. Not all aspects was implemented:
 ![Alt Application supervision tree](__design/decor8r-arch-20200108095649.svg)
@@ -137,6 +143,7 @@ The reasons Elixir was chosen as the back-end technology are:
     + [Unix Socket](https://github.com/kbrw/neovim-elixir/blob/master/lib/link.ex)
     + [Unix Socket Take II](https://stackoverflow.com/questions/34711738/unix-domain-sockets-in-elixir)
     + [IPC Socket](https://en.wikipedia.org/wiki/Unix_domain_socket)
+    + [Code Quality](https://itnext.io/enforcing-code-quality-in-elixir-20f87efc7e66)
 + Client
     + [Neovim Client](https://github.com/kbrw/neovim-elixir)
     + [Rust Unix Socket](https://doc.rust-lang.org/std/os/unix/net/)

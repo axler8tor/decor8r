@@ -22,5 +22,11 @@ erl_crash.dump
 # Ignore package tarball (built via "mix hex.build").
 decor8r-*.tar
 
+# Dialyzer
+/_dialyzer/
+
 # macOS cruft
 /.DS_Store
+
+# Auth
+.gitcredentials

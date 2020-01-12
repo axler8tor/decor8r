@@ -1,27 +1,19 @@
 defmodule Decorator.Config.Supervisor do
-    use Supervisor
+  @moduledoc false
 
-    @this __MODULE__
+  use Supervisor
 
-    def start_link do
-        Supervisor.start_link(@this, :ok, name: @this)
-    end
+  def start_link(_) do
+    Supervisor.start_link(__MODULE__, :ok, name: __MODULE__)
+  end
 
-    def child_spec(_) do
-        %{
-            id: @this,
-            start: {@this, :start_link, []},
-            type: :supervisor,
-        }
-    end
+  @impl true
+  def init(_) do
+    children = [
+      Decorator.Config.Store,
+      Decorator.Config.Listener
+    ]
 
-    @impl true
-    def init(_) do
-        children = [
-            Decorator.Config.Store,
-            Decorator.Config.Listener,
-        ]
-
-        Supervisor.init(children, strategy: :one_for_one)
-    end
+    Supervisor.init(children, strategy: :one_for_one)
+  end
 end

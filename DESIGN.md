@@ -16,13 +16,41 @@ The _Decision Backlog and Resolution Register_ keeps track of decisions that sti
 
 | Component     | Target        | Status
 |           ---:|---            |---
-| **Client**    | Before 0.2.0  | In progress
+| **Client**    | Before 0.3.0  | In progress
 | **Back End**  | 0.1.1         | Resolved
 | **Config**    | 0.1.2         | Resolved
-| **Comms**     | Before 0.2.0  | In progress
+| **Comms**     | Before 0.3.0  | In progress
 
 
-## [0.1.5](https://github.com/axler8tor/decor8r/projects/1#card-31515243) ###
+## [0.2.0](https://github.com/axler8tor/decor8r/projects/1#card-31530395) – Implement configuration server ##
+_2020-01-15_
+
+### Configuration ###
++ `about`
+  - _version_ = "x.x.x"
+  - _license_ = "https://unlicense.org/"
+  - _documentation_ = "https://decor8r.readthedocs.io/"
+  - _homepage_ = "https://decor8r.axler8r.io/"
+  - _source_ = "https://github.com/axler8r/decor8r.git/"
+  - _bugs_ = "bugs@axler8r.io"
++ `theme`
+  - _name_ = "Material Palenight"<sub>default</sub>
++ `shell`
+    + `listener`
+      - _port_ = 65521<sub>default</sub>
+      _ _socket_ = "/tmp/decor8r.sock"<sub>default</sub>
+    + `decoration`
+      - _segments_ = ["vi", "user", "path", "venv", "git", "status"]<sub>default</sub>
+    + `segment`<sub>optional</sub> – override segment settings
+        + `vi`
+        + `user`
+        + `path`
+        + `venv`
+        + `git`
+        + `status`
+
+
+## [0.1.5](https://github.com/axler8tor/decor8r/projects/1#card-31515243) – Implement code quality measures ##
 _2020-01-12_
 
 Implemented minimal code quality measures.
@@ -31,7 +59,7 @@ Implemented minimal code quality measures.
 ## [0.1.4](https://github.com/axler8tor/decor8r/projects/1#card-31316726) – Implement project scaffold ##
 _2020-01-10_
 
-Implemented default application strucure.
+Implemented default application structure.
 
 The following graphic shows a representation of what the design will look like. Not all aspects was implemented:
 ![Alt Application supervision tree](__design/decor8r-arch-20200108095649.svg)
@@ -71,14 +99,14 @@ The following graphic shows a high-level workflow for _**decor8r**_&apos;s confi
 
 A supervisor starts the _Configuration Service_. The service checks to see if a default configuration exist. If it does, it loads the default configuration. If it does not exist, the configuration service creates a default configuration in the default configuration directory &mdash; `$XDG_CONFIG_HOME/decor8r/config.toml`, if it is defined or `~/.config/decor8r/config.toml`.
 
-Information in [this link](https://stackoverflow.com/questions/3373948/equivalents-of-xdg-config-home-and-xdg-data-home-on-mac-os-x) was considered for configuration directories on macOS environments. It was decided that a simpler mapping (as used by the likes of _Alacritty_, _powerline_, _tig_ and _Neovim_ on macOS) would be used;  `$XDG_CONFIG_HOME` maps to `~/.config`.
+Information in [this link](https://stackoverflow.com/questions/3373948/equivalents-of-xdg-config-home-and-xdg-data-home-on-mac-os-x) was considered for configuration directories on macOS environments. It was decided that a simpler mapping (as used by the likes of _Alacrity_, _power line_, _tog_ and _Neo vim_ on macOS) would be used;  `$XDG_CONFIG_HOME` maps to `~/.config`.
 
 ### Technology Decisions ###
 The following table shows the technology decisions for this version:
 
 | Component         | Technology
 |               ---:|----
-| **Config Format** | TOML
+| **Con fig Format** | TOML
 | **Config Reader** | Elixir TOML
 
 ### Rationale ###
@@ -128,6 +156,7 @@ The reasons Elixir was chosen as the back-end technology are:
     + [Git Book](https://git-scm.com/book/en/v2)
     + [Graphs](https://mermaid-js.github.io/mermaid/#/)
     + [Graphs Live Editor](https://mermaid-js.github.io/mermaid-live-editor)
+    + [ZSH](http://zsh.sourceforge.net/Doc/zsh_a4.pdf)
 + Daemon
     + [Erlang Sockets](https://learnyousomeerlang.com/buckets-of-sockets)
     + [Merge Maps & Structs](https://stackoverflow.com/questions/30997475/load-values-into-a-struct-from-a-map-in-elixir)

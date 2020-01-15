@@ -8,7 +8,7 @@ defmodule Decorator.Application do
   def start(_type, _args) do
     children = [
       Decorator.Config.Supervisor,
-      Decorator.Shell.Supervisor,
+      Decorator.Shell.Supervisor
     ]
 
     opts = [strategy: :one_for_one, name: @this]

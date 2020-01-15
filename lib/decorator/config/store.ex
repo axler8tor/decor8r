@@ -1,6 +1,7 @@
 defmodule Decorator.Config.Store do
-  use GenServer
   @moduledoc false
+
+  use GenServer
 
   @store Path.expand("~/.config/decor8r/config.toml")
 
@@ -9,6 +10,7 @@ defmodule Decorator.Config.Store do
   @type value :: boolean | atom | integer | String.t() | list | map
   @type reason :: {:config_error, term} | term
 
+  @spec start_link(any) :: :ignore | {:error, any} | {:ok, pid}
   def start_link(_) do
     GenServer.start_link(__MODULE__, :no_arg, name: __MODULE__)
   end
@@ -24,11 +26,39 @@ defmodule Decorator.Config.Store do
     GenServer.call(__MODULE__, {:load, store})
   end
 
-  # Implementation
+  # Callbacks
+
+  @impl true
+  @spec init(any) :: {:ok, %{}}
+  def init(_) do
+    {:ok, %{}}
+  end
+
+  @impl true
+  def handle_call({:load, store}, _from, _state) do
+    {:reply, :ok, read(store)}
+  end
+
+  # Impl
+
+  defp read(store) do
+    if not File.exists?(store), do: initialise(store)
+
+    with {:ok, content} <- File.read(store),
+         {:ok, toml} <- Toml.decode(content, keys: :atoms) do
+      toml
+    else
+      {:error, reason} -> {:error, reason}
+    end
+  end
 
   defp initialise(store) do
-    File.mkdir(Path.dirname(store))
-    File.write(@store, file_content())
+    with :ok <- File.mkdir(Path.dirname(store)),
+         :ok <- File.write(store, file_content()) do
+      :ok
+    else
+      {:error, error} -> {:error, error}
+    end
   end
 
   defp file_content do
@@ -56,32 +86,5 @@ defmodule Decorator.Config.Store do
     remove = ""       # TODO: replace with unicode
     change = ""       # TODO: replace with unicode
     """
-  end
-
-  defp read(store) do
-    content =
-      case File.read(store) do
-        {:ok, file_content} -> file_content
-        _ -> ""
-      end
-
-    case Toml.decode(content, keys: :atoms) do
-      {:ok, toml} -> toml
-      error -> error
-    end
-  end
-
-  # Callbacks
-
-  @impl true
-  def init(_) do
-    {:ok, %{}}
-  end
-
-  @impl true
-  def handle_call({:load, store}, _from, _state) do
-    if not File.exists?(store), do: initialise(store)
-    config = read(store)
-    {:reply, :ok, config}
   end
 end

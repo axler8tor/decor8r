@@ -26,6 +26,16 @@ defmodule Decorator.Config.Store do
     GenServer.call(__MODULE__, {:load, store})
   end
 
+  @spec config() :: map()
+  def config do
+    GenServer.call(__MODULE__, :config)
+  end
+
+  @spec value(key) :: value
+  def value(key) when is_list(key) do
+    GenServer.call(__MODULE__, {:key, key})
+  end
+
   # Callbacks
 
   @impl true
@@ -37,6 +47,16 @@ defmodule Decorator.Config.Store do
   @impl true
   def handle_call({:load, store}, _from, _state) do
     {:reply, :ok, read(store)}
+  end
+
+  @impl true
+  def handle_call(:config, _from, state) do
+    {:reply, state, state}
+  end
+
+  @impl true
+  def handle_call({:key, key}, _from, state) do
+    {:reply, get_in(state, key), state}
   end
 
   # Impl

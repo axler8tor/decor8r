@@ -6,7 +6,7 @@ defmodule Decorator.Config.Store do
   @store Path.expand("~/.config/decor8r/config.toml")
 
   @type file :: String.t()
-  @type key :: String.t()
+  @type key :: list(atom)
   @type value :: boolean | atom | integer | String.t() | list | map
   @type reason :: {:config_error, term} | term
 
@@ -73,7 +73,7 @@ defmodule Decorator.Config.Store do
   end
 
   defp initialise(store) do
-    with :ok <- File.mkdir(Path.dirname(store)),
+    with :ok <- File.mkdir_p(Path.dirname(store)),
          :ok <- File.write(store, file_content()) do
       :ok
     else
@@ -83,10 +83,16 @@ defmodule Decorator.Config.Store do
 
   defp file_content do
     ~S"""
-    title = "decor8r Configuration"
-
-    [meta]
+    [about]
     version = "0.1.5"
+    licence = "https://unlicense.org/"
+    documentation = "https://decor8r.readthedocs.io/"
+    homepage = "https://decor8r.axler8r.io/"
+    source = "https://decor8r.axler8r.io/source/"
+    bugs = "decor8r-bugs@axler8r.io"
+
+    [theme]
+    name = "Material Palenight"
 
     [shell]
     theme = "Material Pale Night"
@@ -95,16 +101,17 @@ defmodule Decorator.Config.Store do
     port = 65521
     socket = "/tmp/decor8r.sock"
 
-    [shell.glyph.separator]
-    start = " "       # TODO: replace with unicode
-    separator = ""   # TODO: replace with unicode
-    stop = ""        # TODO: replace with unicode
+    [shell.decoration]
+    segments = ["vi", "user", "path", "venv", "git", "status"]
 
-    [shell.glyph.vcs]
-    branch = ""      # TODO: replace with unicode
-    add = ""          # TODO: replace with unicode
-    remove = ""       # TODO: replace with unicode
-    change = ""       # TODO: replace with unicode
+    [shell.segment]
+    [shell.segment.vi]
+    [shell.segment.user]
+    [shell.segment.path]
+    [shell.segment.venv]
+    [shell.segment.git]
+    [shell.segment.status]
+
     """
   end
 end

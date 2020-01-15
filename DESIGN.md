@@ -19,7 +19,35 @@ The _Decision Backlog and Resolution Register_ keeps track of decisions that sti
 | **Client**    | Before 0.2.0  | In progress
 | **Back End**  | 0.1.1         | Resolved
 | **Config**    | 0.1.2         | Resolved
-| **Comms**     | Before 0.2.0  | In progress
+| **Comms**     | Before 0.3.0  | In progress
+
+
+## [0.2.0](https://github.com/axler8tor/decor8r/projects/1#card-31530395) – Implement configuration server ##
+_2020-01-15_
+
+### Configuration ###
++ `about`
+  - _version_ = "x.x.x"
+  - _documentation_ = "https://decor8r.readthedocs.io/"
+  - _homepage_ = "https://decor8r.axler8r.io/"
+  - _source_ = "https://github.com/axler8r/decor8r.git/"
+  - _bugs_ = "bugs@axler8r.io"
+  - _license_ = "https://unlicense.org/"
++ `theme`
+  - _name_ = "Material Palenight"<sub>default</sub>
++ `shell`
+    + `listener`
+      - _port_ = 65521<sub>default</sub>
+      _ _socket_ = "/tmp/decor8r.sock"<sub>default</sub>
+    + `decoration`
+      - _segments_ = ["vi", "user", "path", "venv", "git", "status"]<sub>default</sub>
+    + `segment`<sub>optional</sub> – override segment settings
+        + `vi`
+        + `user`
+        + `path`
+        + `venv`
+        + `git`
+        + `status`
 
 
 ## [0.1.5](https://github.com/axler8tor/decor8r/projects/1#card-31515243) ###

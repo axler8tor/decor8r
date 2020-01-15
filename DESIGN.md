@@ -1,3 +1,16 @@
+---
+Title       : DESIGN.md
+Authors     : Axl Mattheus <release AT axler8r.io>
+Date        : 2020-01-15
+Synopsis    : Details relating to, amongst other things, design decisions,
+              design process, rationale, diagrams, lessons learned, mistakes,
+              considerations, links, assumptions, choices, re-considerations,
+              dependencies, libraries and auxiliary information regarding the
+              design artefacts contained in this repository.
+Conventions : Singular terms or words are, in most cases, interchangeable with
+              the same words in plural form and vice versa.
+Keywords    : Design, Architecture, Implementation, Source Code
+---
 # Design #
 _decor8r_. How it hangs together, what drove the decisions, how it works. This is a work in progress, design decisions are made based on the project road map. Nothing is set in stone during the first couple of releases. Things can change drastically if compelling reasons arise.
 

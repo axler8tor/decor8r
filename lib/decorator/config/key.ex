@@ -1,4 +1,4 @@
-defmodule Decorator.Config.Key do
+defmodule Decorator.Util.Key do
   @moduledoc """
   #{__MODULE__} provides a convinience sigil – `sigil_k/2` – to convert paths,
   as used in keyword maps into a list of atoms to pass ot `Kernet.get_in/2`.

@@ -22,7 +22,7 @@ defmodule Decorator.MixProject do
         extras: [
           "README.md"
         ]
-      ],
+      ]
     ]
   end
 

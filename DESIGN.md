@@ -35,6 +35,12 @@ The _Decision Backlog and Resolution Register_ keeps track of decisions that sti
 | **Comms**     | Before 0.3.0  | In progress
 
 
+## [0.2.1](https://github.com/axler8tor/decor8r/projects/1#card-31708313) – Refine Configuration design ##
+_2020-01-18_
+
+Moved configuration to (config.toml)[./priv/comfig.toml], complete with documentation regarding configuration settings, strategies and examples. It is a work in progress and will be refined as the project progresses.
+
+
 ## [0.2.0](https://github.com/axler8tor/decor8r/projects/1#card-31530395) – Implement configuration server ##
 _2020-01-15_
 

@@ -1,0 +1,163 @@
+[about]
+# decor8r at a glance
+version = "0.1.5"
+# Semantic version as described at https://semver.org/
+
+licence = "https://unlicense.org/"
+documentation = [
+    "https://decor8r.readthedocs.io/",
+    "https://hexdocs.pm/decor8r/decor8r.html"
+    ]
+homepage = "https://decor8r.axler8r.io/"
+source = [
+    "https://decor8r.axler8r.io/source/",
+    "https://github.com/axler8tor/decor8r.git"
+    ]
+bugs = "decor8r-bugs@axler8r.io"
+
+
+[default]
+# Settings that apply to all decorations
+theme = "Material Pale Night"
+
+
+[default.glyph]
+start = " "                             # U+0020
+short = "⋯"                             # U+22EF
+
+
+[default.glpyh.lhs]
+hard = ""                              # U+E0B0
+soft = ""                              # U+E0B1
+
+
+[default.glpyh.rhs]
+hard = ""                              # U+E0B2
+soft = ""                              # U+E0B3
+
+
+[default.glyph.vcs]
+branch = ""                            # U+E0A0
+stash = "⌆"                             # U+2306
+conflict = "!"                          # U+0021 (U+1403)
+add = "+"                               # U+002B
+revmoe = "-"                            # U+002D
+modify = "~"                            # U+007E
+
+
+[default.glyph.vcs.status]
+synced = "≡"                            # U+2261
+ahead = "↑"                             # U+2191
+behind = "↓"                            # U+2193
+behead = "↕"                            # U+2195
+
+
+[default.listener]
+# IPC configuration.
+port = 65521
+# By if the port is not available, the next availabe lower port is selected
+
+socket = "/tmp/decor8r.sock"
+# Unix domain socket
+
+
+[shell]
+tilde_home = true
+multiline = false
+
+
+[shell.compress]
+compress = true                         # shorten the path with elipsis
+wrap = false                            # wrap path
+min_dirs = 3                            # minimum number of dirs to display
+margin = 24
+# endeavour to leave 24 spaces from the right or left edge (depending on
+# direction of writing) of the command terminal at the end of the decoration
+# to type commands
+
+strageties = [
+# Compression strategies focus on a lot on path because it is the most
+# compressable segment. Heavier stratagies are abandonned first.
+#
+# The `strategy` setting determinse where the compression start.
+
+    {name = "none", weight = 1000},
+    # endeavour to show the all the segments in a decoration
+    #
+    # EXAMPLE
+    #   path /Users/whoami/some/path/to/a/directory
+    #   comp  Users > whoami > some > path > to > a > directory
+
+    {name = "tilde", while = 40},
+    # replace the home directory with a tilde
+    #
+    # EXAMPLE
+    #   path /Users/whoami/some/path/to/a/directory
+    #   comp ~ > some > path > to > a > directory
+
+    {name = "drop_dirs", weight = 30},
+    # replace leading directories with elipsis while using
+    # powerline style when the margin is reached and if compress is
+    # true; drop segments if the path cannot be compressed
+    #
+    # EXAMPLE
+    #   path /Users/whoami/some/path/to/a/directory
+    #   comp ~ > ⋯ > to > a > directory
+
+    {name = "classic", weight = 20},
+    # display directory with slashes like an undecorated prompt,
+    # this shaves two characters of each directory in a path; try to
+    # display the full path and add elipsis when the margin is
+    # reached and if compress is true; drop segments if the path
+    # cannot be compressed
+    #
+    # EXAMPLE
+    #   path /Users/whoami/some/path/to/a/directory
+    #   comp ~/⋯/to/a/directory
+
+    {name = "ultra", weight = 10},
+    # like classic and display only the first letter of each
+    # directory and start to drop directories when the margin is
+    # reached and if compress is true ; drop segments if the path
+    # cannot be compressed
+    #
+    # EXAMPLE
+    #   path /Users/whoami/some/path/to/a/directory
+    #   comp ~/⋯/t/a/directory
+
+    {name = "extreme",  weight = 0}
+    # like ultra, but wrap the decoration accross multiple lines
+    # even if wrap is `false`; drop segments if the path cannot be
+    # compressed
+    ]
+strategy = "drop_dirs"
+# 'start' compression strategy. If the margin space is vilated, the next
+# heavier startegy is selected for compression.
+
+
+[shell.segment]
+# Order of segments, together with its weight. Heavier segments gets dropped
+# earlier to satisfy compression styles. If multiple segments has the  same
+# weight, the segment that appears first in the list is dropped before segments
+# that appear after it. Segments with no weight are never dropped.
+segments = [
+    {name = "vi", weight = 100},
+    {name = "user", weight = 200},
+    {name = "path", weight = 0},
+    {name = "venv", weight = 400},
+    {name = "git", weight = 300},
+    {name = "job_status", weight = 50},
+    {name = "status", weight = 75}
+]
+
+
+[shell.segment.datetime]
+[shell.segment.git]
+[shell.segment.job_status]
+[shell.segment.new_line]
+[shell.segment.path]
+[shell.segment.status]
+[shell.segment.timer]
+[shell.segment.user]
+[shell.segment.venv]
+[shell.segment.vi]

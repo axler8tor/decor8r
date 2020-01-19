@@ -53,12 +53,8 @@ behead = "↕"                            # U+2195
 
 
 [default.listener]
-# IPC configuration.
-port = 65521
-# By if the port is not available, the next availabe lower port is selected
-
 socket = "/tmp/decor8r.sock"
-# Unix domain socket
+# port = 65521
 
 
 [shell]

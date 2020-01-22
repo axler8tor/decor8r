@@ -9,7 +9,6 @@ defmodule Decorator.Config.Supervisor do
   end
 
   @impl true
-  @spec init(any) :: {:ok, {%{intensity: any, period: any, strategy: any}, [any]}}
   def init(_) do
     children = [
       Decorator.Config.Store,

@@ -53,8 +53,11 @@ behead = "↕"                            # U+2195
 
 
 [default.listener]
-socket = "/tmp/decor8r.sock"
-# port = 65521
+[default.listener.unix]
+sodket = "/tmp/decor8r.sock"
+
+[default.listener.tcpip]
+port = 65521
 
 
 [shell]

@@ -44,7 +44,7 @@ defmodule Decorator.MixProject do
 
   defp aliases() do
     [
-      qc: ["format", "credo --strict", "dialyzer"]
+      qc: ["format", "dialyzer", "credo --strict"]
     ]
   end
 end

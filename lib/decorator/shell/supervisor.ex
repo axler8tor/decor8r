@@ -3,6 +3,7 @@ defmodule Decorator.Shell.Supervisor do
 
   use Supervisor
 
+  @spec start_link(any) :: :ignore | {:error, any} | {:ok, pid}
   def start_link(_) do
     Supervisor.start_link(__MODULE__, :ok, name: __MODULE__)
   end
@@ -10,7 +11,6 @@ defmodule Decorator.Shell.Supervisor do
   @impl true
   def init(_) do
     children = [
-      Decorator.Shell.Listener,
       Decorator.Shell.ZSH
     ]
 

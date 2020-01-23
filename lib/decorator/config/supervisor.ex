@@ -11,8 +11,7 @@ defmodule Decorator.Config.Supervisor do
   @impl true
   def init(_) do
     children = [
-      Decorator.Config.Store,
-      Decorator.Config.Listener
+      Decorator.Config.Store
     ]
 
     Supervisor.init(children, strategy: :one_for_one)

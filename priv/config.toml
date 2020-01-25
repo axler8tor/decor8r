@@ -26,12 +26,12 @@ start = " "                             # U+0020
 short = "⋯"                             # U+22EF
 
 
-[default.glpyh.lhs]
+[default.glyph.lhs]
 hard = ""                              # U+E0B0
 soft = ""                              # U+E0B1
 
 
-[default.glpyh.rhs]
+[default.glyph.rhs]
 hard = ""                              # U+E0B2
 soft = ""                              # U+E0B3
 

@@ -3,7 +3,7 @@ defmodule Decorator.MixProject do
 
   def project do
     [
-      app: :decorator,
+      app: :decor8r,
       version: "0.2.2",
       elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,

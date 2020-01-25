@@ -1,4 +1,4 @@
-defmodule Decorator.Util.Listener do
+defmodule Decorator.Connect.Listener do
   @moduledoc false
 
   use GenServer

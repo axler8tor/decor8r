@@ -3,68 +3,33 @@ defmodule Decorator.Config.Store do
 
   use GenServer
 
-  @store Path.expand("~/.config/decor8r/config.toml")
+  # TODO: The path shoud be an environment setting
+  @default_config_file Path.expand("~/.config/decor8r/config.toml")
 
   @type file :: String.t()
   @type key :: list(atom)
-  @type value :: boolean | atom | integer | String.t() | list | map
-  @type reason :: {:config_error, term} | term
+  @type value :: boolean | integer | String.t() | list | map
+  @type reason :: {:config_error, any} | any
 
-  @spec start_link(any) :: :ignore | {:error, any} | {:ok, pid}
-  def start_link(_) do
-    GenServer.start_link(__MODULE__, :no_arg, name: __MODULE__)
+  @spec start_link() :: :ignore | {:error, any} | {:ok, pid}
+  @spec start_link(file) :: :ignore | {:error, any} | {:ok, pid}
+  def start_link(config_file \\ @default_config_file) do
+    GenServer.start_link(__MODULE__, config_file, name: __MODULE__)
   end
 
   # API
 
-  @doc """
-  Initialize a new configuration store.
-  """
-  @spec load() :: :ok | {:error, reason}
-  @spec load(file) :: :ok | {:error, reason}
-  def load(store \\ @store) do
-    GenServer.call(__MODULE__, {:load, store})
-  end
-
-  @spec config() :: map()
-  def config do
-    GenServer.call(__MODULE__, :config)
-  end
-
   @spec value(key) :: value
   def value(key) when is_list(key) do
-    GenServer.call(__MODULE__, {:key, key})
-  end
-
-  # Callbacks
-
-  @impl true
-  @spec init(any) :: {:ok, %{}}
-  def init(_) do
-    {:ok, %{}}
-  end
-
-  @impl true
-  def handle_call({:load, store}, _from, _state) do
-    {:reply, :ok, read(store)}
-  end
-
-  @impl true
-  def handle_call(:config, _from, state) do
-    {:reply, state, state}
-  end
-
-  @impl true
-  def handle_call({:key, key}, _from, state) do
-    {:reply, get_in(state, key), state}
+    GenServer.call(__MODULE__, {:value, key})
   end
 
   # Impl
 
-  defp read(store) do
-    if not File.exists?(store), do: initialise(store)
+  defp read(config_file) do
+    if not File.exists?(config_file), do: initialise(config_file)
 
-    with {:ok, content} <- File.read(store),
+    with {:ok, content} <- File.read(config_file),
          {:ok, toml} <- Toml.decode(content, keys: :atoms) do
       toml
     else

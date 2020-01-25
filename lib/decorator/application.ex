@@ -5,8 +5,8 @@ defmodule Decorator.Application do
 
   def start(_type, _args) do
     children = [
-      Decorator.Config.Supervisor,
-      Decorator.Shell.Supervisor
+      Decorator.Config.Store,
+      Decorator.Util.Listener
     ]
 
     opts = [strategy: :one_for_one, name: __MODULE__]

@@ -16,10 +16,14 @@ defmodule Decorator.Util.Listener do
         ]
   @type reason :: any
 
+  # API
+
   @spec start_link(any) :: :ignore | {:error, reason} | {:ok, pid}
   def start_link(_) do
     GenServer.start_link(__MODULE__, :no_args, name: __MODULE__)
   end
+
+  # Callbacks
 
   @impl true
   @spec init(any) :: {:ok, listener_options}

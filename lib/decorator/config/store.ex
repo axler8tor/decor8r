@@ -37,14 +37,31 @@ defmodule Decorator.Config.Store do
     end
   end
 
-  defp initialise(store) do
-    with :ok <- File.mkdir_p(Path.dirname(store)),
-         :ok <- File.write(store, config_file()) do
-      :ok
-    else
-      {:error, error} -> {:error, error}
-    end
+  defp initialise(config_file) do
+    File.mkdir_p!(Path.dirname(config_file))
+    File.write!(config_file, config_file_content())
   end
 
-  defp config_file, do: File.read!(Path.join(:code.priv_dir(:decorator), "config.toml"))
+  defp config_file_content, do: File.read!(Path.join(:code.priv_dir(:decor8r), "config.toml"))
+
+  # Callbacks
+
+  def child_spec(_) do
+    %{
+      id: __MODULE__,
+      start: {__MODULE__, :start_link, []},
+      type: :worker
+    }
+  end
+
+  @impl true
+  @spec init(file) :: {:ok, map}
+  def init(store) do
+    {:ok, read(store)}
+  end
+
+  @impl true
+  def handle_call({:value, key}, _from, state) do
+    {:reply, get_in(state, key), state}
+  end
 end

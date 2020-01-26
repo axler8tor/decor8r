@@ -1,43 +1,51 @@
 defmodule Decorator.Connector do
   @moduledoc false
 
-  use GenServer
   import Decorator.Util.Key
   alias Decorator.Config.Store
-  # alias :gen_tcp, as: GenTCP
+  alias :gen_tcp, as: GenTCP
 
-  # TODO: Document. Refer to :gen_tcp and :inet
-  @type listener_options :: [
-          {:ifaddr, local: String.t()}
-          | :binary
-          | {:active, false}
-          | {:reuseaddr, true}
-          | {:packet, 4}
-        ]
-  @type reason :: any
+  @doc """
+  Listen for incomming connections.
+  """
+  @spec listen :: :ok | {:error, atom}
+  def listen do
+    socket_descriptor = {
+      :ifaddr,
+      {:local, Store.value(~k[default.listener.unix.socket])}
+    }
 
-  # API
-
-  @spec start_link(any) :: :ignore | {:error, reason} | {:ok, pid}
-  def start_link(_) do
-    GenServer.start_link(__MODULE__, :no_args, name: __MODULE__)
-  end
-
-  # Callbacks
-
-  @impl true
-  @spec init(any) :: {:ok, listener_options}
-  def init(_) do
-    socket = Store.value(~k[default.listener.unix.socket])
-
-    state = [
-      {:ifaddr, local: socket},
-      :binary,
-      active: false,
-      reuseaddr: true,
-      packet: 4
+    listener_options = [
+      socket_descriptor | [:binary, active: false, reuseaddr: true, packet: 4]
     ]
 
-    {:ok, state}
+    {:ok, listener} = GenTCP.listen(0, listener_options)
+    accept(listener)
+  end
+
+  @doc """
+  Accept requests.
+  """
+  @spec accept(port) :: :ok | {:error, atom}
+  def accept(listener) do
+    {:ok, connection} = GenTCP.accept(listener)
+    handle(connection)
+  end
+
+  @doc """
+  Handle requests.
+  """
+  @spec handle(port) :: :ok | {:error, atom}
+  def handle(connection) do
+    connection |> request() |> response(connection)
+  end
+
+  defp request(connection) do
+    {:ok, request} = GenTCP.recv(connection, 0)
+    request
+  end
+
+  defp response(response, connection) do
+    GenTCP.send(connection, response)
   end
 end

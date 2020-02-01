@@ -23,20 +23,15 @@ defmodule Decorator.Connector do
     accept(listener)
   end
 
-  @doc """
-  Accept requests.
-  """
   @spec accept(port) :: :ok | {:error, atom}
-  def accept(listener) do
+  defp accept(listener) do
     {:ok, connection} = GenTCP.accept(listener)
     handle(connection)
+    accept(listener)
   end
 
-  @doc """
-  Handle requests.
-  """
   @spec handle(port) :: :ok | {:error, atom}
-  def handle(connection) do
+  defp handle(connection) do
     connection |> request() |> response(connection)
   end
 

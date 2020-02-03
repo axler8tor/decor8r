@@ -3,7 +3,7 @@ defmodule ShellDecorator do
 
   require Logger
 
-  def listen(port) do
+  def listen(port \\ 65521) do
     Logger.info("Listen for shell requests")
     {:ok, socket} = :gen_tcp.listen(port, [:binary, packet: :line, active: false, reuseaddr: true])
     accept(socket)
@@ -19,28 +19,20 @@ defmodule ShellDecorator do
   defp handle(shell) do
     Logger.info("Handle shell request")
     shell
-    |> read_line()
-    |> write_line(shell)
+    |> rx()
+    |> tx(shell)
 
     handle(shell)
   end
 
-  defp read_line(socket) do
+  defp rx(socket) do
     Logger.info("Read request from shell")
     {:ok, data} = :gen_tcp.recv(socket, 0)
     data
   end
 
-  defp write_line(line, socket) do
+  defp tx(line, socket) do
     Logger.info("Write response to shell")
     :gen_tcp.send(socket, line)
-  end
-
-  def sum(seq, filter) do
-    seq
-    |> Enum.map(&(&1*2))
-    |> Enum.filter(&(rem(&1, filter) == 0))
-    |> Enum.sum
-    |> IO.puts
   end
 end

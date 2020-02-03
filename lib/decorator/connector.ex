@@ -6,33 +6,43 @@ defmodule Decorator.Connector do
   alias :gen_tcp, as: GenTCP
 
   @doc """
-  Listen for incomming connections.
+  Listen for requests.
   """
   @spec listen :: :ok | {:error, atom}
   def listen do
-    socket_descriptor = {
-      :ifaddr,
-      {:local, Store.value(~k[default.listener.unix.socket])}
-    }
+    # set up listener environment
+    unix_socket = Store.value(~k[default.listener.unix.socket])
+    if File.exists?(unix_socket), do: File.rm!(unix_socket)
+    # see :inet.local_address()
+    local_address = {:ifaddr, {:local, unix_socket}}
 
     listener_options = [
-      socket_descriptor | [:binary, active: false, reuseaddr: true, packet: 4]
+      local_address | [:binary, active: false, reuseaddr: true, packet: :line]
     ]
 
+    # accept incomming requests
     {:ok, listener} = GenTCP.listen(0, listener_options)
     accept(listener)
   end
 
-  @spec accept(port) :: :ok | {:error, atom}
   defp accept(listener) do
     {:ok, connection} = GenTCP.accept(listener)
-    handle(connection)
+
+    {:ok, pid} =
+      Task.Supervisor.start_child(
+        Decorator.Shell.Supervisor,
+        fn -> handle(connection) end
+      )
+
+    :ok = GenTCP.controlling_process(connection, pid)
+
     accept(listener)
   end
 
-  @spec handle(port) :: :ok | {:error, atom}
   defp handle(connection) do
-    connection |> request() |> response(connection)
+    connection
+     |> request()
+     |> response(connection)
   end
 
   defp request(connection) do

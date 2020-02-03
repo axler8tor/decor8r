@@ -34,6 +34,14 @@ The _Decision Backlog and Resolution Register_ keeps track of decisions that sti
 | **Config**    | 0.1.2         | Resolved
 | **Comms**     | Before 0.3.0  | In progress
 
+## [0.2.2](https://github.com/axler8tor/decor8r/projects/1#card-31807152) – Implement Listener ##
+_2020-02-04_
+
+Implemented listener, mostly using (`Task` and `:gen_tcp`)[https://elixir-lang.org/getting-started/mix-otp/task-and-gen-tcp.html] tutorail material.
+
+### Considerations ###
+Decided to implement a line based interface first. May switch to a streaming based interface later.
+
 
 ## [0.2.1](https://github.com/axler8tor/decor8r/projects/1#card-31708313) – Refine Configuration design ##
 _2020-01-18_
@@ -123,10 +131,10 @@ Information in [this link](https://stackoverflow.com/questions/3373948/equivalen
 ### Technology Decisions ###
 The following table shows the technology decisions for this version:
 
-| Component         | Technology
-|               ---:|----
+| Component          | Technology
+|                ---:|----
 | **Con fig Format** | TOML
-| **Config Reader** | Elixir TOML
+| **Config Reader**  | Elixir TOML
 
 ### Rationale ###
 The reasons TOML was chosen as a configuration format are:

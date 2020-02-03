@@ -195,6 +195,7 @@ The reasons Elixir was chosen as the back-end technology are:
     + [ExDoc](https://hexdocs.pm/ex_doc/readme.html)
     + [posh-git](https://github.com/dahlbyk/posh-git)
     + [Resource Files](https://elixirforum.com/t/is-it-possible-to-include-resource-files-when-packaging-my-project-using-mix-escript/730)
+    + [Reuse Unix Sockets](https://unix.stackexchange.com/questions/470459/how-to-create-a-public-unix-domain-socket)
 + Client
     + [Neovim Client](https://github.com/kbrw/neovim-elixir)
     + [Rust Unix Socket](https://doc.rust-lang.org/std/os/unix/net/)

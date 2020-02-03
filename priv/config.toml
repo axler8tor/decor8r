@@ -26,12 +26,12 @@ start = " "                             # U+0020
 short = "⋯"                             # U+22EF
 
 
-[default.glpyh.lhs]
+[default.glyph.lhs]
 hard = ""                              # U+E0B0
 soft = ""                              # U+E0B1
 
 
-[default.glpyh.rhs]
+[default.glyph.rhs]
 hard = ""                              # U+E0B2
 soft = ""                              # U+E0B3
 
@@ -53,12 +53,11 @@ behead = "↕"                            # U+2195
 
 
 [default.listener]
-# IPC configuration.
-port = 65521
-# By if the port is not available, the next availabe lower port is selected
-
+[default.listener.unix]
 socket = "/tmp/decor8r.sock"
-# Unix domain socket
+
+[default.listener.tcpip]
+port = 65521
 
 
 [shell]

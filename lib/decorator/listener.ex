@@ -1,4 +1,4 @@
-defmodule Decorator.Connector do
+defmodule Decorator.Listener do
   @moduledoc false
 
   import Decorator.Util.Key

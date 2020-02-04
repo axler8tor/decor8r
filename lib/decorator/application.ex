@@ -7,8 +7,9 @@ defmodule Decorator.Application do
   def start(_type, _args) do
     children = [
       Decorator.Config.Store,
-      {Task.Supervisor, name: Decorator.Shell.Supervisor},
-      {Task, fn -> Decorator.Connector.listen() end}
+      {Task.Supervisor, name: Decorator.Listener.Supervisor},
+      # TODO: figure out how hot name the listener `Decorator.Listener`
+      {Task, fn -> Decorator.Listener.listen() end}
     ]
 
     opts = [strategy: :one_for_one, name: __MODULE__]

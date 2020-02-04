@@ -9,7 +9,10 @@ defmodule Decorator.Application do
       Decorator.Config.Store,
       {Task.Supervisor, name: Decorator.Listener.Supervisor},
       # TODO: figure out how hot name the listener `Decorator.Listener`
-      {Task, fn -> Decorator.Listener.listen() end}
+      Supervisor.child_spec(
+        {Task, fn -> Decorator.Listener.listen() end},
+        restart: :permanent
+      )
     ]
 
     opts = [strategy: :one_for_one, name: __MODULE__]

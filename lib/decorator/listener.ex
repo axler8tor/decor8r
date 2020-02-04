@@ -6,14 +6,19 @@ defmodule Decorator.Connector do
   alias :gen_tcp, as: GenTCP
 
   @doc """
-  Listen for requests.
+  Entry point for all _decoration_ activity.
+
+  Whenever a user issues a command in a terminal, performs some
+  activity in Neovim or performs an action in a tmux session, a
+  request is sent to `listen/0`. It then starts a _decorator_ to
+  produce the approriate _decoration_ and return it to the caller for
+  display.
   """
-  @spec listen :: :ok | {:error, atom}
+  @spec listen :: :ok | {:error, any}
   def listen do
     # set up listener environment
     unix_socket = Store.value(~k[default.listener.unix.socket])
     if File.exists?(unix_socket), do: File.rm!(unix_socket)
-    # see :inet.local_address()
     local_address = {:ifaddr, {:local, unix_socket}}
 
     listener_options = [
@@ -30,7 +35,7 @@ defmodule Decorator.Connector do
 
     {:ok, pid} =
       Task.Supervisor.start_child(
-        Decorator.Shell.Supervisor,
+        Decorator.Listener.Supervisor,
         fn -> handle(connection) end
       )
 
@@ -41,8 +46,8 @@ defmodule Decorator.Connector do
 
   defp handle(connection) do
     connection
-     |> request()
-     |> response(connection)
+    |> request()
+    |> response(connection)
   end
 
   defp request(connection) do

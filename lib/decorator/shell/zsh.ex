@@ -1,14 +1,11 @@
 defmodule Decorator.Shell.ZSH do
   @moduledoc false
 
-  use GenServer
+  @type path :: Path.t()
+  @type decoration :: String.t()
 
-  def start_link(_) do
-    GenServer.start_link(__MODULE__, :no_arg, name: __MODULE__)
-  end
-
-  @impl true
-  def init(_) do
-    {:ok, :ok}
+  @spec decorate(path) :: decoration
+  def decorate(path) do
+    "result"
   end
 end

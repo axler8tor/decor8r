@@ -1,0 +1,2 @@
+#!/bin/zsh
+rustc -O client/decor8r.rs

@@ -1,4 +1,18 @@
+---
+Title       : DESIGN.md
+Authors     : Axl Mattheus <release AT axler8r.io>
+Date        : 2020-01-15
+Synopsis    : Details relating to, amongst other things, design decisions,
+              design process, rationale, diagrams, lessons learned, mistakes,
+              considerations, links, assumptions, choices, re-considerations,
+              dependencies, libraries and auxiliary information regarding the
+              design artefacts contained in this repository.
+Conventions : Singular terms or words are, in most cases, interchangeable with
+              the same words in plural form and vice versa.
+Keywords    : Design, Architecture, Implementation, Source Code
+---
 # Design #
+
 _decor8r_. How it hangs together, what drove the decisions, how it works. This is a work in progress, design decisions are made based on the project road map. Nothing is set in stone during the first couple of releases. Things can change drastically if compelling reasons arise.
 
 
@@ -11,18 +25,85 @@ The following graphic shows an example of _**decor8r**_'s most likely high-level
 The _daemon_ front end accepts requests from clients, forwards the requests to the appropriate _daemon_ back end components which produces the decorations according to configuration rules.
 
 
+## Frontend ##
+```
+Decorator.
+
+Usage:
+  decor8r (-h, --help | command)
+
+Commands:
+  decor8r [options] shell [shell options] <path>
+  decor8r [options] tmux  [tmux options]
+  decor8r [options] nvim  [nvim options]
+
+Shell Options:
+  -c,--config           <file>        Default $XDG_CONFIG_HOME/decor8r/config.toml or
+                                              $HOME/.config/decor8r/config.toml
+  -s,--socket           <file>        Default $TMP/decor8r.sock
+  -u,--user             <user>        Default $USER
+  -j,--jobs             <jobs>        Default $(jobs | wc -l)
+  -p,--pipe-status      <status>      Default $pipestatus
+  -x,--exit-status      <status>      Default $?
+  -w,--width            <number>      Default $COLUMNS
+  -b,--background       (light|dark)  Default dark
+```
+
+
 ## Decision Backlog and Resolution Register ##
 The _Decision Backlog and Resolution Register_ keeps track of decisions that still need to be made, together with a target release by which time the decision should be resolved. The following table shows what design elements are undecided and when design decisions will be resolved:
 
 | Component     | Target        | Status
 |           ---:|---            |---
-| **Client**    | Before 0.2.0  | In progress
+| **Client**    | Before 0.3.0  | In progress
 | **Back End**  | 0.1.1         | Resolved
 | **Config**    | 0.1.2         | Resolved
-| **Comms**     | Before 0.2.0  | In progress
+| **Comms**     | Before 0.3.0  | In progress
+
+## [0.2.2](https://github.com/axler8tor/decor8r/projects/1#card-31807152) – Implement Listener ##
+_2020-02-04_
+
+Implemented listener, mostly using (`Task` and `:gen_tcp`)[https://elixir-lang.org/getting-started/mix-otp/task-and-gen-tcp.html] tutorail material.
+
+### Considerations ###
+Decided to implement a line based interface first. May switch to a streaming based interface later.
 
 
-## [0.1.5](https://github.com/axler8tor/decor8r/projects/1#card-31515243) ###
+## [0.2.1](https://github.com/axler8tor/decor8r/projects/1#card-31708313) – Refine Configuration design ##
+_2020-01-18_
+
+Moved configuration to (config.toml)[./priv/comfig.toml], complete with documentation regarding configuration settings, strategies and examples. It is a work in progress and will be refined as the project progresses.
+
+
+## [0.2.0](https://github.com/axler8tor/decor8r/projects/1#card-31530395) – Implement configuration server ##
+_2020-01-15_
+
+### Configuration ###
++ `about`
+  - _version_ = "x.x.x"
+  - _license_ = "https://unlicense.org/"
+  - _documentation_ = "https://decor8r.readthedocs.io/"
+  - _homepage_ = "https://decor8r.axler8r.io/"
+  - _source_ = "https://github.com/axler8r/decor8r.git/"
+  - _bugs_ = "bugs@axler8r.io"
++ `theme`
+  - _name_ = "Material Palenight"<sub>default</sub>
++ `shell`
+    + `listener`
+      - _port_ = 65521<sub>default</sub>
+      _ _socket_ = "/tmp/decor8r.sock"<sub>default</sub>
+    + `decoration`
+      - _segments_ = ["vi", "user", "path", "venv", "git", "status"]<sub>default</sub>
+    + `segment`<sub>optional</sub> – override segment settings
+        + `vi`
+        + `user`
+        + `path`
+        + `venv`
+        + `git`
+        + `status`
+
+
+## [0.1.5](https://github.com/axler8tor/decor8r/projects/1#card-31515243) – Implement code quality measures ##
 _2020-01-12_
 
 Implemented minimal code quality measures.
@@ -31,7 +112,7 @@ Implemented minimal code quality measures.
 ## [0.1.4](https://github.com/axler8tor/decor8r/projects/1#card-31316726) – Implement project scaffold ##
 _2020-01-10_
 
-Implemented default application strucure.
+Implemented default application structure.
 
 The following graphic shows a representation of what the design will look like. Not all aspects was implemented:
 ![Alt Application supervision tree](__design/decor8r-arch-20200108095649.svg)
@@ -71,15 +152,15 @@ The following graphic shows a high-level workflow for _**decor8r**_&apos;s confi
 
 A supervisor starts the _Configuration Service_. The service checks to see if a default configuration exist. If it does, it loads the default configuration. If it does not exist, the configuration service creates a default configuration in the default configuration directory &mdash; `$XDG_CONFIG_HOME/decor8r/config.toml`, if it is defined or `~/.config/decor8r/config.toml`.
 
-Information in [this link](https://stackoverflow.com/questions/3373948/equivalents-of-xdg-config-home-and-xdg-data-home-on-mac-os-x) was considered for configuration directories on macOS environments. It was decided that a simpler mapping (as used by the likes of _Alacritty_, _powerline_, _tig_ and _Neovim_ on macOS) would be used;  `$XDG_CONFIG_HOME` maps to `~/.config`.
+Information in [this link](https://stackoverflow.com/questions/3373948/equivalents-of-xdg-config-home-and-xdg-data-home-on-mac-os-x) was considered for configuration directories on macOS environments. It was decided that a simpler mapping (as used by the likes of _Alacrity_, _power line_, _tog_ and _Neo vim_ on macOS) would be used;  `$XDG_CONFIG_HOME` maps to `~/.config`.
 
 ### Technology Decisions ###
 The following table shows the technology decisions for this version:
 
-| Component         | Technology
-|               ---:|----
-| **Config Format** | TOML
-| **Config Reader** | Elixir TOML
+| Component          | Technology
+|                ---:|----
+| **Con fig Format** | TOML
+| **Config Reader**  | Elixir TOML
 
 ### Rationale ###
 The reasons TOML was chosen as a configuration format are:
@@ -124,10 +205,12 @@ The reasons Elixir was chosen as the back-end technology are:
 + Documentation
     + [Markdown Cheat sheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
     + [ANSI Escape Codes](https://en.wikipedia.org/wiki/ANSI_escape_code)
+    + [ANSI with ZSH](https://stackoverflow.com/questions/6159856/how-do-zsh-ansi-colour-codes-work)
     + [UTFx Characters](https://www.fileformat.info/info/charset/UTF-8/list.htm)
     + [Git Book](https://git-scm.com/book/en/v2)
     + [Graphs](https://mermaid-js.github.io/mermaid/#/)
     + [Graphs Live Editor](https://mermaid-js.github.io/mermaid-live-editor)
+    + [ZSH](http://zsh.sourceforge.net/Doc/zsh_a4.pdf)
 + Daemon
     + [Erlang Sockets](https://learnyousomeerlang.com/buckets-of-sockets)
     + [Merge Maps & Structs](https://stackoverflow.com/questions/30997475/load-values-into-a-struct-from-a-map-in-elixir)
@@ -144,6 +227,17 @@ The reasons Elixir was chosen as the back-end technology are:
     + [Unix Socket Take II](https://stackoverflow.com/questions/34711738/unix-domain-sockets-in-elixir)
     + [IPC Socket](https://en.wikipedia.org/wiki/Unix_domain_socket)
     + [Code Quality](https://itnext.io/enforcing-code-quality-in-elixir-20f87efc7e66)
+    + [ExDoc](https://hexdocs.pm/ex_doc/readme.html)
+    + [posh-git](https://github.com/dahlbyk/posh-git)
+    + [Resource Files](https://elixirforum.com/t/is-it-possible-to-include-resource-files-when-packaging-my-project-using-mix-escript/730)
+    + [Reuse Unix Sockets](https://unix.stackexchange.com/questions/470459/how-to-create-a-public-unix-domain-socket)
+    + [Erlang Socket Application](https://learnyousomeerlang.com/buckets-of-sockets)
+    + [Rust Unix Socket Client](https://doc.rust-lang.org/std/os/unix/net/struct.UnixStream.html)
+    + [List Manipulation](https://stackoverflow.com/questions/53094253/delete-multiple-elements-from-a-list)
+    + [IO Lists!](https://www.bignerdranch.com/blog/elixir-and-io-lists-part-1-building-output-efficiently/)
+    + Example output: print -P '%K{yellow}%F{black}%m%f%k%K{blue}%F{yellow}%f%k%K{blue}%F{white} ~ > Projects > GitHub > %BSomething %b%f%k%F{blue}%f'
+    + `Tilde` path from ZSH: print -P '%~'
 + Client
     + [Neovim Client](https://github.com/kbrw/neovim-elixir)
     + [Rust Unix Socket](https://doc.rust-lang.org/std/os/unix/net/)
+    + [Elixir Escript Client](https://medium.com/blackode/writing-the-command-line-application-in-elixir-78a8d1b1850)

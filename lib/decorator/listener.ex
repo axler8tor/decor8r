@@ -2,7 +2,7 @@ defmodule Decorator.Listener do
   @moduledoc false
 
   import Decorator.Util.Key
-  alias Decorator.Config.Store
+  alias Decorator.Configuration
   alias :gen_tcp, as: GenTCP
 
   @doc """
@@ -17,7 +17,7 @@ defmodule Decorator.Listener do
   @spec listen :: :ok | {:error, any}
   def listen do
     # set up listener environment
-    unix_socket = Store.value(~k[default.listener.unix.socket])
+    unix_socket = Configuration.value(~k[decor8r.listener.unix.socket])
     if File.exists?(unix_socket), do: File.rm!(unix_socket)
     local_address = {:ifaddr, {:local, unix_socket}}
 
@@ -51,8 +51,10 @@ defmodule Decorator.Listener do
   end
 
   defp request(connection) do
-    {:ok, request} = GenTCP.recv(connection, 0)
-    request
+    case GenTCP.recv(connection, 0) do
+      {:ok, request} -> request
+      {:error, _} -> ""
+    end
   end
 
   defp response(response, connection) do

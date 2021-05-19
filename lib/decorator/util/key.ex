@@ -33,7 +33,7 @@ defmodule Decorator.Util.Key do
   @typedoc """
   A list of options. Currently ignored and aliased to `any`.
   """
-  @type opts :: any
+  @type opts :: keyword()
 
   @doc """
   Convers a dot separated path of terms into a list of atoms.
@@ -44,8 +44,9 @@ defmodule Decorator.Util.Key do
       iex> ~k[path.to.value]
       [:path, :to, :value]
   """
-  @spec sigil_k(key, opts) :: [atom]
-  def sigil_k(key, _opts) when is_binary(key) do
+  @spec sigil_k(key) :: [:atom]
+  @spec sigil_k(key, opts) :: [:atom]
+  def sigil_k(key, _opts \\ []) when is_binary(key) do
     key |> String.split(".") |> Enum.map(&String.to_atom(&1))
   end
 end

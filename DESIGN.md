@@ -12,6 +12,7 @@ Conventions : Singular terms or words are, in most cases, interchangeable with
 Keywords    : Design, Architecture, Implementation, Source Code
 ---
 # Design #
+
 _decor8r_. How it hangs together, what drove the decisions, how it works. This is a work in progress, design decisions are made based on the project road map. Nothing is set in stone during the first couple of releases. Things can change drastically if compelling reasons arise.
 
 
@@ -22,6 +23,31 @@ The following graphic shows an example of _**decor8r**_'s most likely high-level
 ![Alt decor8r Architecture](__design/decor8r-arch-20191229121452.svg)
 
 The _daemon_ front end accepts requests from clients, forwards the requests to the appropriate _daemon_ back end components which produces the decorations according to configuration rules.
+
+
+## Frontend ##
+```
+Decorator.
+
+Usage:
+  decor8r (-h, --help | command)
+
+Commands:
+  decor8r [options] shell [shell options] <path>
+  decor8r [options] tmux  [tmux options]
+  decor8r [options] nvim  [nvim options]
+
+Shell Options:
+  -c,--config           <file>        Default $XDG_CONFIG_HOME/decor8r/config.toml or
+                                              $HOME/.config/decor8r/config.toml
+  -s,--socket           <file>        Default $TMP/decor8r.sock
+  -u,--user             <user>        Default $USER
+  -j,--jobs             <jobs>        Default $(jobs | wc -l)
+  -p,--pipe-status      <status>      Default $pipestatus
+  -x,--exit-status      <status>      Default $?
+  -w,--width            <number>      Default $COLUMNS
+  -b,--background       (light|dark)  Default dark
+```
 
 
 ## Decision Backlog and Resolution Register ##
@@ -179,6 +205,7 @@ The reasons Elixir was chosen as the back-end technology are:
 + Documentation
     + [Markdown Cheat sheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
     + [ANSI Escape Codes](https://en.wikipedia.org/wiki/ANSI_escape_code)
+    + [ANSI with ZSH](https://stackoverflow.com/questions/6159856/how-do-zsh-ansi-colour-codes-work)
     + [UTFx Characters](https://www.fileformat.info/info/charset/UTF-8/list.htm)
     + [Git Book](https://git-scm.com/book/en/v2)
     + [Graphs](https://mermaid-js.github.io/mermaid/#/)
@@ -204,6 +231,16 @@ The reasons Elixir was chosen as the back-end technology are:
     + [posh-git](https://github.com/dahlbyk/posh-git)
     + [Resource Files](https://elixirforum.com/t/is-it-possible-to-include-resource-files-when-packaging-my-project-using-mix-escript/730)
     + [Reuse Unix Sockets](https://unix.stackexchange.com/questions/470459/how-to-create-a-public-unix-domain-socket)
+<<<<<<< HEAD
+=======
+    + [Erlang Socket Application](https://learnyousomeerlang.com/buckets-of-sockets)
+    + [Rust Unix Socket Client](https://doc.rust-lang.org/std/os/unix/net/struct.UnixStream.html)
+    + [List Manipulation](https://stackoverflow.com/questions/53094253/delete-multiple-elements-from-a-list)
+    + [IO Lists!](https://www.bignerdranch.com/blog/elixir-and-io-lists-part-1-building-output-efficiently/)
+    + Example output: print -P '%K{yellow}%F{black}%m%f%k%K{blue}%F{yellow}%f%k%K{blue}%F{white} ~ > Projects > GitHub > %BSomething %b%f%k%F{blue}%f'
+    + `Tilde` path from ZSH: print -P '%~'
+>>>>>>> master
 + Client
     + [Neovim Client](https://github.com/kbrw/neovim-elixir)
     + [Rust Unix Socket](https://doc.rust-lang.org/std/os/unix/net/)
+    + [Elixir Escript Client](https://medium.com/blackode/writing-the-command-line-application-in-elixir-78a8d1b1850)

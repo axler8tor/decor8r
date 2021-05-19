@@ -25,8 +25,13 @@ decor8r-*.tar
 # Dialyzer
 /_dialyzer/
 
+# ElixirLS
+/.elixir_ls/
+
 # macOS cruft
 /.DS_Store
 
 # Auth
 .gitcredentials
+
+decor8r

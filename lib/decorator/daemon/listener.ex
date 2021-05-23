@@ -1,7 +1,7 @@
-defmodule Decorator.Listener do
+defmodule Decorator.Daemon.Listener do
   @moduledoc false
 
-  import Decorator.Util.Key
+  import Decorator.Utility.Key
   alias Decorator.Configuration
   alias :gen_tcp, as: GenTCP
 

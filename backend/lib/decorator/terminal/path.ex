@@ -1,7 +1,5 @@
 defmodule Decorator.Terminal.Path do
-  alias __MODULE__
-
-  @type t :: %Path {
+  @type t :: %__MODULE__ {
     path: String.t(),
     background: IO.ANSI.ansicode(),
     foreground: IO.ANSI.ansicode(),
@@ -10,7 +8,7 @@ defmodule Decorator.Terminal.Path do
   }
 
   defstruct [
-    path: nil,
+    path: "",
     background: IO.ANSI.normal(),
     foreground: IO.ANSI.normal(),
     path_separator: "",
@@ -19,7 +17,7 @@ defmodule Decorator.Terminal.Path do
 
   @spec new(String.t()) :: Decorator.Terminal.Path.t()
   def new(path) do
-    %Path{path: path}
+    %Decorator.Terminal.Path{ path: path }
   end
 end
 

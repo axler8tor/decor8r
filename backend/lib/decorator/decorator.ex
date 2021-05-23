@@ -5,6 +5,6 @@ defprotocol Decorator do
   @doc """
   Decorates part, or all of a shell prompt, vim status line or tmux status line.
   """
-  @spec decorate(object) :: decoration
+  @spec decorate(object()) :: decoration()
   def decorate(object)
 end

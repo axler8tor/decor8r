@@ -28,8 +28,8 @@ defmodule Decorator.MixProject do
 
   def application do
     [
-      extra_applications: [:logger],
-      mod: {Decorator.Application, []}
+      # extra_applications: [:logger],
+      # mod: {Decorator.Application, []}
     ]
   end
 

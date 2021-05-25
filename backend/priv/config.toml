@@ -1,10 +1,28 @@
 [glyph]
-[glyph.ltr]
-hard = ""
-soft = ""
-[glyph.rtl]
-hard = ""
-soft = ""
+    bar = "│"
+    locked = ""
+    [glyph.ltr]
+        terminator = ""
+        separator = ""
+    [glyph.rtl]
+        terminator = ""
+        separator = ""
+    [glyph.terminal]
+        ellipsis = "┅"
+    [glyph.git]
+        branch = ""
+        stash = "§"
+        conflict = "‼"
+        added = "+"
+        removed = "-"
+        modifed = "~"
+        ahead = "↑"
+        behind = "↓"
+        behead = "↕"
+        synced = "≡"
+        eol = ""
+    [glyph.virtual]
+        environment = "E"
 
 
 [neovim]
@@ -12,19 +30,6 @@ soft = ""
 
 # [terminal]
 # [terminal.glyph]
-# short = "┅"
-# [terminal.glyph.git]
-# bar= "│"
-# branch = ""
-# stash = "§"
-# conflict = "‼"
-# add = "+"
-# remove = "-"
-# modify = "~"
-# synced = "≡"
-# ahead = "↑"
-# behind = "↓"
-# behead = "↕"
 
 
 [tmux]

@@ -5,8 +5,8 @@ defmodule PathDecoratorTest do
     start_supervised(Decorator.Configuration)
 
     configuration = Decorator.Configuration.get()
-    decoration = Decorator.Terminal.PathDecorator.decorate("/a/b/c/d/e", configuration)
-    decoration |> IO.puts()
-    assert 1 == 1
+    lhs = Decorator.Terminal.PathDecorator.decorate("/a/b/c/d/e", configuration)
+    rhs = IO.ANSI.blue_background() <> IO.ANSI.white() <> "a  b  c  d  e" <> IO.ANSI.reset()
+    assert lhs == rhs
   end
 end

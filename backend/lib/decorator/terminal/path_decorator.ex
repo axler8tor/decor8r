@@ -4,7 +4,7 @@ defmodule Decorator.Terminal.PathDecorator do
   def decorate(path, configuration) do
     path
     |> String.split(~S[/], trim: true)
-    |> Enum.join(" #{configuration.glyph.ltr.soft} ")
+    |> Enum.join(" #{configuration.glyph.ltr.separator} ")
     |> do_decorate()
   end
 

@@ -1,17 +1,10 @@
 defmodule Decorator.Terminal.PathDecorator do
   @moduledoc false
 
-  defstruct background: IO.ANSI.normal(),
-            foreground: IO.ANSI.normal(),
-            compact: :true,
-            boldlast: :true,
-            softstop: ""
-
-  @spec decorate(binary) :: binary
-  def decorate(path) do
+  def decorate(path, configuration) do
     path
     |> String.split(~S[/], trim: true)
-    |> Enum.join("  ")
+    |> Enum.join(" #{configuration.glyph.ltr.soft} ")
     |> do_decorate()
   end
 

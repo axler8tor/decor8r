@@ -63,3 +63,89 @@ defmodule Decorator.Configuration.Key do
     |> Enum.map(&String.to_atom/1)
   end
 end
+
+defmodule Decorator.Configuration.Helper do
+  @moduledoc """
+  Helpers. All sorts of helpers.
+  """
+
+  @spec on_red :: <<_::24, _::_*8>>
+  def on_red() do
+    IO.ANSI.red_background()
+  end
+
+  @spec on_orange :: <<_::24, _::_*8>>
+  def on_orange() do
+    IO.ANSI.light_red_background()
+  end
+
+  @spec on_yellow :: <<_::24, _::_*8>>
+  def on_yellow() do
+    IO.ANSI.yellow_background()
+  end
+
+  @spec on_green :: <<_::24, _::_*8>>
+  def on_green() do
+    IO.ANSI.green_background()
+  end
+
+  @spec on_blue :: <<_::24, _::_*8>>
+  def on_blue() do
+    IO.ANSI.blue_background()
+  end
+
+  @spec on_cyan :: <<_::24, _::_*8>>
+  def on_cyan() do
+    IO.ANSI.cyan_background()
+  end
+
+  @spec on_magneta :: <<_::24, _::_*8>>
+  def on_magneta() do
+    IO.ANSI.magenta_background()
+  end
+
+  @spec on_violet :: <<_::24, _::_*8>>
+  def on_violet() do
+    IO.ANSI.light_magenta_background()
+  end
+
+  @spec on_base03 :: <<_::24, _::_*8>>
+  def on_base03() do
+    IO.ANSI.light_black_background()
+  end
+
+  @spec on_base02 :: <<_::24, _::_*8>>
+  def on_base02() do
+    IO.ANSI.black_background()
+  end
+
+  @spec on_base01 :: <<_::24, _::_*8>>
+  def on_base01() do
+    IO.ANSI.light_green_background()
+  end
+
+  @spec on_base00 :: <<_::24, _::_*8>>
+  def on_base00() do
+    IO.ANSI.light_yellow_background()
+  end
+
+  @spec on_base0 :: <<_::24, _::_*8>>
+  def on_base0() do
+    IO.ANSI.light_blue_background()
+  end
+
+  @spec on_base1 :: <<_::24, _::_*8>>
+  def on_base1 do
+    IO.ANSI.light_cyan_background()
+  end
+
+  @spec on_base2 :: <<_::24, _::_*8>>
+  def on_base2() do
+    IO.ANSI.white_background()
+  end
+
+  @spec on_base3 :: <<_::24, _::_*8>>
+  def on_base3() do
+    IO.ANSI.light_white_background()
+  end
+end

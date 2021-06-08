@@ -1,15 +1,15 @@
-[glyph]
+[symbols]
     bar = "│"
     locked = ""
-    [glyph.ltr]
+    [symbols.ltr]
         terminator = ""
         separator = ""
-    [glyph.rtl]
+    [symbols.rtl]
         terminator = ""
         separator = ""
-    [glyph.terminal]
-        ellipsis = "┅"
-    [glyph.git]
+    [symbols.terminal]
+        truncated = "┅"
+    [symbols.git]
         branch = ""
         stash = "§"
         conflict = "‼"
@@ -21,24 +21,125 @@
         behead = "↕"
         synced = "≡"
         eol = ""
-    [glyph.virtual]
-        environment = "E"
+    [symbols.virtual]
+        environment = "℮"
+
+
+[themes]
+    theme = "solarized_light"
+    see_also = "https://github.com/chriskempson/base16"
+    [themes.solarized_dark]
+        base00 = "#002b36"
+        base01 = "#073642"
+        base02 = "#586e75"
+        base03 = "#657b83"
+        base04 = "#839496"
+        base05 = "#93a1a1"
+        base06 = "#eee8d5"
+        base07 = "#fdf6e3"
+        base08 = "#dc322f" # red
+        base09 = "#cb4b16" # orange
+        base0A = "#b58900" # yellow
+        base0B = "#859900" # green
+        base0C = "#2aa198" # cyan
+        base0D = "#268bd2" # blue
+        base0E = "#6c71c4" # violet
+        base0F = "#d33682" # magenta
+    [themes.solarized_light]
+        base00 = "#fdf6e3"
+        base01 = "#eee8d5"
+        base02 = "#93a1a1"
+        base03 = "#839496"
+        base04 = "#657b83"
+        base05 = "#586e75"
+        base06 = "#073642"
+        base07 = "#002b36"
+        base08 = "#dc322f"
+        base09 = "#cb4b16"
+        base0A = "#b58900"
+        base0B = "#859900"
+        base0C = "#2aa198"
+        base0D = "#268bd2"
+        base0E = "#6c71c4"
+        base0F = "#d33682"
+    [themes.material]
+        base00 = "#263238"
+        base01 = "#2E3C43"
+        base02 = "#314549"
+        base03 = "#546E7A"
+        base04 = "#B2CCD6"
+        base05 = "#EEFFFF"
+        base06 = "#EEFFFF"
+        base07 = "#FFFFFF"
+        base08 = "#F07178"
+        base09 = "#F78C6C"
+        base0A = "#FFCB6B"
+        base0B = "#C3E88D"
+        base0C = "#89DDFF"
+        base0D = "#82AAFF"
+        base0E = "#C792EA"
+        base0F = "#FF5370"
+    [themes.material_palenight]
+        base00 = "#292D3E"
+        base01 = "#444267"
+        base02 = "#32374D"
+        base03 = "#676E95"
+        base04 = "#8796B0"
+        base05 = "#959DCB"
+        base06 = "#959DCB"
+        base07 = "#FFFFFF"
+        base08 = "#F07178"
+        base09 = "#F78C6C"
+        base0A = "#FFCB6B"
+        base0B = "#C3E88D"
+        base0C = "#89DDFF"
+        base0D = "#82AAFF"
+        base0E = "#C792EA"
+        base0F = "#FF5370"
 
 
 [neovim]
 
 
-# [terminal]
-# [terminal.glyph]
+[terminal]
+    [terminal.sections]
+        # TODO: convert colors to base-16
+        [terminal.sections.vimode]
+            background = "base0B"
+            foreground = "base07"
+        [terminal.sections.user]
+            background = "base0D"
+            foreground = "base07"
+            include_host = true
+        [terminal.sections.path]
+            background = "base03"
+            foreground = "base07"
+            compress = true
+            compress_threshold = 50
+            bold_cwd = true
+        [terminal.sections.git]
+            background = "base0E"
+            foreground = "base07"
+        [terminal.sections.job]
+            show_zero = false
+            background = "base0A"
+            foreground = "base07"
+        [terminal.sections.status]
+            show_zero = false
+            [terminal.sections.status.zero]
+                background = "base0b"
+                foreground = "base07"
+            [terminal.sections.status.non_zero]
+                background = "base08"
+                foreground = "base07"
 
 
 [tmux]
 
 
 
-
-[default.listener]
-[default.listener.unix]
-socket = "/tmp/decor8r.sock"
-[default.listener.tcpip]
-port = 65521
+[listener]
+    [listener.tcpip]
+        port = 65521
+    [listener.unix]
+        socket = "/tmp/decor8r.sock"

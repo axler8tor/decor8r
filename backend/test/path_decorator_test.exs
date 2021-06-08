@@ -9,4 +9,8 @@ defmodule PathDecoratorTest do
     rhs = IO.ANSI.blue_background() <> IO.ANSI.white() <> "a  b  c  d  e" <> IO.ANSI.reset()
     assert lhs == rhs
   end
+
+  test "Test Configuration Map" do
+    assert true == true
+  end
 end
